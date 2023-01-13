@@ -1,0 +1,47 @@
+{% extends 'profile/base/base.html' %}
+{% load static %}
+{% load mptt_tags %}
+
+
+{% block content %}
+
+        <!-- Content Body Start -->
+        <div class="content-body">
+
+            <!-- Page Headings Start -->
+            <div class="row justify-content-between align-items-center mb-10">
+
+                <!-- Page Heading Start -->
+                <div class="col-12 col-lg-auto mb-20">
+                    <div class="page-heading">
+                        <h3>Account Information<span>/ Your kinds info</span></h3>
+                    </div>
+                </div><!-- Page Heading End -->
+
+            </div><!-- Page Headings End -->
+
+          <h3 class="title" style="font-size: 16px" id="myText" >{{ acc_address }}</h3>
+         <button onclick="copyContent()" class="button button-primary">Copy wallet address!</button><br><br>
+
+                            <script>
+                              let text = document.getElementById('myText').innerHTML;
+                              const copyContent = async () => {
+
+                                try {
+                                  await navigator.clipboard.writeText(text);
+                                  console.log('Content copied to clipboard');
+                                  alert("Successfully Copied!");
+
+                                } catch (err) {
+                                  console.error('Failed to copy: ', err);
+                                }
+                              }
+                            </script>
+
+
+        <br>
+
+
+
+        </div><!-- Content Body End -->
+{% endblock %}

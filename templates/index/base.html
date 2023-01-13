@@ -1,0 +1,242 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>
+            {% block title %}
+            {% endblock %}
+        </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="shortcut icon" type="image/x-icon" href="{% static 'index/assets/img/favicon.png' %}">
+        <!-- Place favicon.ico in the root directory -->
+
+        <!-- CSS here -->
+        <link rel="stylesheet" href="{% static 'index/assets/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'index/assets/css/animate.min.css' %}">
+        <link rel="stylesheet" href="{% static 'index/assets/css/fontawesome-all.min.css' %}">
+        <link rel="stylesheet" href="{% static 'index/assets/css/mCustomScrollbar.min.css' %}">
+        <link rel="stylesheet" href="{% static 'index/assets/css/odometer.css' %}">
+        <link rel="stylesheet" href="{% static 'index/assets/css/slick.css' %}">
+        <link rel="stylesheet" href="{% static 'index/assets/css/default.css' %}">
+        <link rel="stylesheet" href="{% static 'index/assets/css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'index/assets/css/responsive.css' %}">
+    </head>
+    <body class="home-01">
+
+        <!-- Preloader -->
+        <div id="preloader">
+            <div class="spinner">
+                <div class="rect1"></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+                <div class="rect5"></div>
+            </div>
+        </div>
+        <!-- Preloader -->
+
+        <!-- header-area -->
+        <header id="header">
+            <div id="header-fixed-height"></div>
+            <div id="sticky-header" class="menu-area">
+                <div class="container custom-container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mobile-nav-toggler"><i class="fas fa-bars"></i></div>
+                            <div class="menu-wrap">
+                                <nav class="menu-nav">
+                                    <div class="logo">
+                                        <a href="/"><img src="{% static 'index/assets/img/logo/logo.png' %}" alt=""></a>
+                                    </div>
+                                    <div class="navbar-wrap main-menu d-none d-lg-flex">
+                                        <ul class="navigation">
+
+                                             {% if request.user.is_authenticated %}
+                                                <li class="active"><a href="/dashboard/" class="section-link">Dashboard</a></li>
+                                            {% else %}
+                                                <li class="active"><a href="/signin/" class="section-link">Login</a></li>
+                                            {% endif %}
+
+
+                                            <li><a href="#about" class="section-link">About us</a></li>
+                                            <li><a href="#sales" class="section-link">Sales</a></li>
+                                            <li><a href="#roadmap" class="section-link">Roadmap</a></li>
+                                            <li class="menu-item-has-children"><a href="blog.html">Blog</a>
+                                                <ul class="sub-menu">
+                                                    <li><a href="blog.html">Our Blog</a></li>
+                                                    <li><a href="blog-details.html">Blog Details</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#contact" class="section-link">Contact us</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="header-action d-none d-md-block">
+                                        <ul>
+                                            <li class="header-lang"><span class="selected-lang">ENG</span>
+                                                <ul class="lang-list">
+                                                    <li><a href="#">IND</a></li>
+                                                    <li><a href="#">BNG</a></li>
+                                                    <li><a href="#">TUR</a></li>
+                                                    <li><a href="#">CIN</a></li>
+                                                </ul>
+                                            </li>
+                                             {% if request.user.is_authenticated %}
+                                                <li class="header-btn"><a href="/dashboard/" class="btn">Dashboard</a></li>
+                                            {% else %}
+                                                <li class="header-btn"><a href="/signin/" class="btn">Login</a></li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!-- Mobile Menu  -->
+                            <div class="mobile-menu">
+                                <nav class="menu-box">
+                                    <div class="close-btn"><i class="fas fa-times"></i></div>
+                                    <div class="nav-logo"><a href="/"><img src="{% static 'index/assets/img/logo/logo.png' %}" alt="" title=""></a>
+                                    </div>
+                                    <div class="menu-outer">
+                                        <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+                                    </div>
+                                    <div class="social-links">
+                                        <ul class="clearfix">
+                                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            <div class="menu-backdrop"></div>
+                            <!-- End Mobile Menu -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- header-area-end -->
+
+        <!-- Block Content -->
+        {% block content %}
+
+        {% endblock %}
+        <!-- End Block Content -->
+
+
+        <script defer src="https://www.livecoinwatch.com/static/lcw-widget.js"></script> <div class="livecoinwatch-widget-5" lcw-base="USD" lcw-color-tx="#999999" lcw-marquee-1="coins" lcw-marquee-2="movers" lcw-marquee-items="10" ></div>
+
+
+        <!-- footer-area -->
+        <footer>
+            <div class="footer-area">
+                <div class="container">
+                    <div class="footer-scroll-wrap">
+                        <button class="scroll-to-target" data-target="html"><i class="fas fa-arrow-up"></i></button>
+                    </div>
+                    <div class="footer-top">
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-4 col-md-6">
+                                <div class="footer-widget wow fadeInUp" data-wow-delay=".2s">
+                                    <a href="index.html" class="f-logo"><img src="{% static 'index/assets/img/logo/logo.png' %}" alt=""></a>
+                                    <div class="footer-content">
+                                        <p>A new way to make the payments easy, reliable and 100% secure. claritatem itamconse quat. Exerci tationulla</p>
+                                        <ul class="footer-social">
+                                            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-skype"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-5 col-sm-6">
+                                <div class="footer-widget  wow fadeInUp" data-wow-delay=".4s">
+                                    <h4 class="fw-title">Useful Links</h4>
+                                    <div class="footer-link">
+                                        <ul>
+                                            <li><a href="#">Contact us</a></li>
+                                            <li><a href="#">How it Works</a></li>
+                                            <li><a href="#">Create</a></li>
+                                            <li><a href="#">Explore</a></li>
+                                            <li><a href="#">Terms & Services</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-lg-3 col-sm-6">
+                                <div class="footer-widget wow fadeInUp" data-wow-delay=".6s">
+                                    <h4 class="fw-title">Community</h4>
+                                    <div class="footer-link">
+                                        <ul>
+                                            <li><a href="#">Help Center</a></li>
+                                            <li><a href="#">Partners</a></li>
+                                            <li><a href="#">Suggestions</a></li>
+                                            <li><a href="#">Blog</a></li>
+                                            <li><a href="#">Newsletters</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-6">
+                                <div class="footer-widget wow fadeInUp" data-wow-delay=".8s">
+                                    <h4 class="fw-title">Subscribe Newsletter</h4>
+                                    <div class="footer-newsletter">
+                                        <p>Exerci tation ullamcorper suscipit lobortis nisl aliquip ex ea commodo</p>
+                                        <form action="#">
+                                            <input type="email" placeholder="Info@gmail.com" required>
+                                            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6">
+                                <div class="copyright-text">
+                                    <p>Copyright &copy; 2022. All Rights Reserved Bigtech</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 d-none d-sm-block">
+                                <div class="footer-menu">
+                                    <ul>
+                                        <li><a href="#">Terms and conditions</a></li>
+                                        <li><a href="#">Privacy policy</a></li>
+                                        <li><a href="/signin/">Login / Signup</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- footer-area-end -->
+
+
+
+
+        <!-- JS here -->
+        <script src="{% static 'index/assets/js/vendor/jquery-3.6.0.min.js' %}"></script>
+        <script src="{% static 'index/assets/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'index/assets/js/jquery.odometer.min.js' %}"></script>
+        <script src="{% static 'index/assets/js/jquery.countdown.min.js' %}"></script>
+        <script src="{% static 'index/assets/js/jquery.knob.min.js' %}"></script>
+        <script src="{% static 'index/assets/js/jquery-countdowngampang.min.js' %}"></script>
+        <script src="{% static 'index/assets/js/jquery.ba-throttle-debounce.min.js' %}"></script>
+        <script src="{% static 'index/assets/js/jquery.mCustomScrollbar.min.js' %}"></script>
+        <script src="{% static 'index/assets/js/jarallax.min.js' %}"></script>
+        <script src="{% static 'index/assets/js/jquery.appear.js' %}"></script>
+        <script src="{% static 'index/assets/js/jquery.easing.js' %}"></script>
+        <script src="{% static 'index/assets/js/slick.min.js' %}"></script>
+        <script src="{% static 'index/assets/js/wow.min.js' %}"></script>
+        <script src="{% static 'index/assets/js/main.js' %}"></script>
+    </body>
+</html>

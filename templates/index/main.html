@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+
+{% if request.user.is_authenticated %}
+
+    {{ request.user }}
+
+    {% else %}
+
+    <a href="{% url 'signup_view' %}"><button class="btn btn-primary">Create an Account</button></a>
+
+
+{% endif %}
+
+</body>
+</html>

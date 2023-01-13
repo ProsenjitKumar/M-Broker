@@ -1,0 +1,77 @@
+{% extends 'profile/signup/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+        Signin
+{% endblock %}
+
+{% block content %}
+
+    <div class="main-wrapper">
+        <!-- Content Body Start -->
+        <div class="content-body m-0 p-0">
+
+            <div class="login-register-wrap">
+                <div class="row">
+
+                    <div class="d-flex align-self-center justify-content-center order-2 order-lg-1 col-lg-5 col-12">
+                        <div class="login-register-form-wrap">
+
+                            <div class="content">
+                                <h1>Sign in</h1>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            </div>
+
+                            <div class="login-register-form">
+                                <form action=" " method="POST">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        {% if messages %}
+                                        <ul class="alert alert-danger" style="list-style: none;">
+                                            {% for message in messages %}
+                                            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                                                <p style="color: red">{{ message }}</p>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                        {% endif %}
+                                        <div class="col-12 mb-20">
+                                            {{ form.username|add_class:'form-control' }}
+                                        </div>
+                                        <div class="col-12 mb-20">
+                                            {{ form.password|add_class:'form-control' }}
+                                        </div>
+
+                                        <div class="col-12 mb-20">
+                                            <label for="remember" class="adomx-checkbox-2">
+                                            <input id="remember" type="checkbox"><i class="icon"></i>Remember.
+                                            </label>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="row justify-content-between">
+                                                <div class="col-auto mb-15"><a href="#">Forgot Password?</a></div>
+                                                <div class="col-auto mb-15">Dont have account? <a href="/signup/">Create Now.</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-10"><button class="button button-primary button-outline">sign in</button></div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="login-register-bg order-1 order-lg-2 col-lg-7 col-12">
+                        <div class="content">
+                            <h1>Sign in</h1>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div><!-- Content Body End -->
+    </div>
+
+{% endblock %}

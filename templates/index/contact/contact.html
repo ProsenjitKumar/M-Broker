@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form method="post" action="">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-grp">
+                                        <input type="text" placeholder="Enter your Name" value="{{ form.name }}" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-grp">
+                                        <input type="email" placeholder="Enter you email" value="{{ form.email }}" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-grp">
+                                <textarea name="massage" data-value="{{ form.content }}" placeholder="Enter your massage"></textarea>
+                            </div>
+                            <div class="submit-btn text-center">
+                                <button type="submit" class="btn">Send Massage</button>
+                            </div>
+                        </form>
+
+</body>
+</html>

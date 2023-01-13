@@ -1,0 +1,112 @@
+{% extends 'profile/base/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+        <!-- Content Body Start -->
+        <div class="content-body">
+
+            <!-- Page Headings Start -->
+            <div class="row justify-content-between align-items-center mb-10">
+                <!-- Page Heading Start -->
+                <div class="col-12 col-lg-auto mb-20">
+                    <div class="page-heading">
+                        <h3>Deposit Area <span>/ Choose Deposit Method</span></h3>
+                    </div>
+                </div><!-- Page Heading End -->
+            </div><!-- Page Headings End -->
+
+
+        <!--Form Size Start-->
+                <div class="col-12 mb-30">
+                    <div class="box">
+                        <div class="box-head">
+                            <h2><img class="gallery-img" style="height: 50px;width: 50px;font-size: 44px!important;" src="{{ MEDIA_URL }}{{ object.logo.url }}" alt="symbol image" title="symbol image">
+                            {{ object.coin_name }}</h2><br>
+
+
+
+                            <h5 class="title" style="font-size: 15px" id="myText">{{ object.deposit_address }}</h5><br>
+
+                            <button onclick="copyContent()" class="button button-primary">Copy Address!</button><br>
+
+                            <br>
+                            <h3 class="title" id="myText">If you are a
+                                    <span style="color: #12c5cb">
+                                        <a href="https://www.binance.com/en/activity/referral-entry/CPA?fromActivityPage=true&ref=CPA_00Q6JEZEVW">
+                                            Binance</a></span> user, Select
+                                    <strong style="color: #0bb7ff">{{ object.network }}</strong> Network</h3>
+
+                            <ul>
+                                <li>Send only <span style="color: #0bb7ff">{{ object.coin_name }}</span> to this deposit address.</li>
+                                <li>Ensure the network is <span style="color: #0bb7ff">{{ object.network }}</span>.</li>
+                                <li>Please note that deposits via smart contracts are not supported,
+                                    with the exception of ETH via the ERC20 network or BNB via the BSC network.</li>
+                                <li>Do not send NFTs to this address.</li>
+                            </ul>
+
+
+                <!--Unordered List End-->
+
+                            <script>
+                              let text = document.getElementById('myText').innerHTML;
+                              const copyContent = async () => {
+
+                                try {
+                                  await navigator.clipboard.writeText(text);
+                                  console.log('Content copied to clipboard');
+                                  alert("Successfully Copied!");
+
+                                } catch (err) {
+                                  console.error('Failed to copy: ', err);
+                                }
+                              }
+                            </script>
+
+
+                            <br>
+                            <img class="gallery-img" src="{{ MEDIA_URL }}{{ object.qr_code_image.url }}" alt="symbol image" title="symbol image">
+                        </div>
+
+                        <form action="" method="post">
+                            {% csrf_token %}
+
+                        <div class="box-body">
+                            <div class="row mbn-20">
+                                <!--Default Field-->
+                                <div class="col-lg-4 col-12 mb-20">
+                                    <div class="row mbn-15">
+                                        <div class="col-12 mb-15">
+                                            <label>Amount</label>
+                                            {{ form.amount_deposited|add_class:"form-control" }}
+                                        </div>
+                                        <div class="col-12 mb-15">
+                                            <label>Your Coin</label>
+                                                {{ form.coin_selected|add_class:"form-control" }}
+                                        </div>
+                                        <div class="col-12 mb-15">
+                                            <label>Transaction ID</label>
+                                            {{ form.transaction_id|add_class:"form-control" }}
+                                        </div>
+                                    </div><br>
+                                    <div class="foot text-center">
+                                    <button class="button button-primary">Deposit Now</button>
+                                         </div>
+                                </div>
+                                <!--Default Field-->
+
+                            </div>
+                        </div>
+                            </form>
+{#                        <div class="box-foot">#}
+{#                            <p>Control Size using classes like <code>.form-control-sm or .form-control-lg</code> classes.</p>#}
+{#                        </div>#}
+                    </div>
+                </div>
+                <!--Form Size End-->
+
+
+
+        </div><!-- Content Body End -->
+{% endblock %}

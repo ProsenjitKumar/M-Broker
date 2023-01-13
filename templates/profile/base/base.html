@@ -1,0 +1,345 @@
+{% load static %}
+{% load tags %}
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'profile/assets/images/favicon.ico' %}">
+
+    <!-- CSS
+	============================================ -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'profile/assets/css/vendor/bootstrap.min.css' %}">
+
+    <!-- Icon Font CSS -->
+    <link rel="stylesheet" href="{% static 'profile/assets/css/vendor/material-design-iconic-font.min.css' %}">
+    <link rel="stylesheet" href="{% static 'profile/assets/css/vendor/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'profile/assets/css/vendor/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'profile/assets/css/vendor/cryptocurrency-icons.css' %}">
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="{% static 'profile/assets/css/plugins/plugins.css' %}">
+
+    <!-- Helper CSS -->
+    <link rel="stylesheet" href="{% static 'profile/assets/css/helper.css' %}">
+
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="{% static 'profile/assets/css/style.css' %}">
+
+    <!-- Custom Style CSS Only For Demo Purpose -->
+    <link id="cus-style" rel="stylesheet" href="{% static 'profile/assets/css/style-primary.css' %}">
+
+</head>
+
+<body class="skin-dark">
+
+    <div class="main-wrapper">
+
+
+        <!-- Header Section Start -->
+        <div class="header-section">
+            <div class="container-fluid">
+                <div class="row justify-content-between align-items-center">
+
+                    <!-- Header Logo (Header Left) Start -->
+                    <div class="header-logo col-auto">
+                        <a href="/">
+                            <img src="{% static 'profile/assets/images/logo/logo.png' %}" alt="">
+                            <img src="{% static 'profile/assets/images/logo/logo-light.png' %}" class="logo-light" alt="">
+                        </a>
+                    </div><!-- Header Logo (Header Left) End -->
+
+                    <!-- Header Right Start -->
+                    <div class="header-right flex-grow-1 col-auto">
+                        <div class="row justify-content-between align-items-center">
+
+                            <!-- Side Header Toggle & Search Start -->
+                            <div class="col-auto">
+                                <div class="row align-items-center">
+
+                                    <!--Side Header Toggle-->
+                                    <div class="col-auto"><button class="side-header-toggle"><i class="zmdi zmdi-menu"></i></button></div>
+
+                                </div>
+                            </div><!-- Side Header Toggle & Search End -->
+
+                            <!-- Header Notifications Area Start -->
+                            <div class="col-auto">
+
+                                <ul class="header-notification-area">
+
+                                    <li class="adomx-dropdown position-relative col-auto">
+                                        <button class="button button-outline button-success"><span><a href="/coin-list/">${% number_of_messages request %}</a> </span></button>
+                                    </li>
+
+                                    <!--Notification-->
+                                    <li class="adomx-dropdown col-auto">
+                                        <a class="toggle" href="#"><i class="zmdi zmdi-notifications"></i><span class="badge"></span></a>
+
+                                        <!-- Dropdown -->
+                                        <div class="adomx-dropdown-menu dropdown-menu-notifications">
+                                            <div class="head">
+                                                <h5 class="title">You have 4 new notification.</h5>
+                                            </div>
+                                            <div class="body custom-scroll">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#">
+                                                            <i class="zmdi zmdi-notifications-none"></i>
+                                                            <p>There are many variations of pages available.</p>
+                                                            <span>11.00 am   Today</span>
+                                                        </a>
+                                                        <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <i class="zmdi zmdi-block"></i>
+                                                            <p>There are many variations of pages available.</p>
+                                                            <span>11.00 am   Today</span>
+                                                        </a>
+                                                        <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <i class="zmdi zmdi-info-outline"></i>
+                                                            <p>There are many variations of pages available.</p>
+                                                            <span>11.00 am   Today</span>
+                                                        </a>
+                                                        <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <i class="zmdi zmdi-shield-security"></i>
+                                                            <p>There are many variations of pages available.</p>
+                                                            <span>11.00 am   Today</span>
+                                                        </a>
+                                                        <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <i class="zmdi zmdi-notifications-none"></i>
+                                                            <p>There are many variations of pages available.</p>
+                                                            <span>11.00 am   Today</span>
+                                                        </a>
+                                                        <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <i class="zmdi zmdi-block"></i>
+                                                            <p>There are many variations of pages available.</p>
+                                                            <span>11.00 am   Today</span>
+                                                        </a>
+                                                        <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <i class="zmdi zmdi-info-outline"></i>
+                                                            <p>There are many variations of pages available.</p>
+                                                            <span>11.00 am   Today</span>
+                                                        </a>
+                                                        <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <i class="zmdi zmdi-shield-security"></i>
+                                                            <p>There are many variations of pages available.</p>
+                                                            <span>11.00 am   Today</span>
+                                                        </a>
+                                                        <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="footer">
+                                                <a href="#" class="view-all">view all</a>
+                                            </div>
+                                        </div>
+
+                                    </li>
+
+                                    <!--User-->
+                                    <li class="adomx-dropdown col-auto">
+                                        <a class="toggle" href="#">
+                                            <span class="user">
+                                        <span class="avatar">
+                                            <img src="{% static 'profile/assets/images/avatar/avatar-1.jpg' %}" alt="">
+                                            <span class="status"></span>
+                                            </span>
+                                            <span class="name">{{ request.user.get_full_name }}</span>
+                                            </span>
+                                        </a>
+
+                                        <!-- Dropdown -->
+                                        <div class="adomx-dropdown-menu dropdown-menu-user">
+                                            <div class="head">
+                                                <h5 class="name"><a href="#">{{ request.user.get_full_name }}</a></h5>
+                                                <a class="mail" href="#">{{ request.user.email }}</a>
+                                            </div>
+                                            <div class="body">
+                                                <ul>
+                                                    <li><a href="/profile/"><i class="zmdi zmdi-account"></i>Profile</a></li>
+
+                                                    <li><a href="/account-info/"><i class="zmdi zmdi-wallpaper"></i>Account</a></li>
+                                                </ul>
+                                                <ul>
+                                                    <li><a href="#"><i class="zmdi zmdi-settings"></i>Setting</a></li>
+                                                    <li><a href="/logout/"><i class="zmdi zmdi-lock-open"></i>Sign Out</a></li>
+                                                </ul>
+                                                <ul>
+                                                    <li><a href="/withdraw/"><i class="zmdi zmdi-paypal"></i>Payment</a></li>
+                                                    <li><a href="#"><i class="zmdi zmdi-google-pages"></i>Invoice</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    </li>
+
+                                </ul>
+
+                            </div><!-- Header Notifications Area End -->
+
+                        </div>
+                    </div><!-- Header Right End -->
+
+                </div>
+            </div>
+        </div><!-- Header Section End -->
+
+
+        <!-- Side Header Start -->
+        <div class="side-header show">
+            <button class="side-header-close"><i class="zmdi zmdi-close"></i></button>
+            <!-- Side Header Inner Start -->
+            <div class="side-header-inner custom-scroll">
+
+                <nav class="side-header-menu" id="side-header-menu">
+                    <ul>
+
+                        <li><a href="/dashboard/"><i class="ti-home"></i> <span>Dashboard</span></a></li>
+                        <li><a href="/coin-list/"><i class="ti-palette"></i> <span>Deposit</span></a></li>
+                        <li><a href="/withdraw/"><i class="ti-money"></i> <span>Withdrawal</span></a></li>
+                        <li><a href="/investment/"><i class="ti-info"></i> <span>Investment Scheme</span></a></li>
+{#                        <li><a href="/investment/"><i class="ti-info"></i> <span>Active Investment</span></a></li>#}
+
+                        <li class="has-sub-menu"><a href="#"><i class="ti-wallet"></i> <span>Profit</span></a>
+                            <ul class="side-header-sub-menu">
+                                <li><a href="/upcoming/"><span>ROI</span></a></li>
+                                <li><a href="/upcoming/"><span>Level Income</span></a></li>
+                                <li><a href="/upcoming/"><span>Referral</span></a></li>
+                                <li><a href="/upcoming/"><span>Copy Trade Investment</span></a></li>
+                                <li><a href="/upcoming/"><span>Rank</span></a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="/upcoming/"><i class="ti-layout-cta-btn-right"></i> <span>Copytrader Expert</span></a></li>
+
+                        <li class="has-sub-menu"><a href="#"><i class="zmdi zmdi-money-box"></i> <span>Transfer Funds</span></a>
+                            <ul class="side-header-sub-menu">
+                                <li><a href="/upcoming/"><span>Add to main balance</span></a></li>
+                                <li><a href="/p2p-transfer/"><span>Balance transfer</span></a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/upcoming/"><i class="ti-shine"></i> <span>Demo Contest</span></a></li>
+
+                        <li><a href="/affiliate-team/"><i class="ti-id-badge"></i> <span>Affiliate Team</span></a></li>
+                        <li class="has-sub-menu"><a href="#"><i class="ti-package"></i> <span>Activity & History</span></a>
+                            <ul class="side-header-sub-menu">
+                                <li><a href="/upcoming/"><span>Transaction History</span></a></li>
+                                <li><a href="/upcoming/"><span>Account History</span></a></li>
+                                <li><a href="/upcoming/"><span>Copytrader History</span></a></li>
+                                <li><a href="/upcoming/"><span>Investment History</span></a></li>
+                                <li><a href="/deposit-history/"><span>Deposit History</span></a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/profile/"><i class="ti-user"></i> <span>Profile</span></a></li>
+
+                        <li class="has-sub-menu"><a href="#"><i class="ti-settings"></i> <span>Settings</span></a>
+                            <ul class="side-header-sub-menu">
+                                <li><a href="/upcoming/"><span>Set PIN</span></a></li>
+                                <li><a href="/upcoming/"><span>Forget Password</span></a></li>
+                                <li><a href="/upcoming/"><span>2-Step Verification</span></a></li>
+                                <li><a href="/upcoming/"><span>Account Verify</span></a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/upcoming/"><i class="ti-help-alt"></i> <span>Help & Support</span></a></li>
+                        <li><a href="/upcoming/"><i class="ti-help-alt"></i> <span>FAQ</span></a></li>
+
+
+                        <li class="has-sub-menu"><a href="#"><i class="ti-package"></i> <span>Upcoming</span></a>
+                            <ul class="side-header-sub-menu">
+                                <li><a href="/upcoming/"><span>Trading</span></a></li>
+                                <li><a href="/upcoming/"><span>Trading Balance</span></a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </nav>
+
+            </div><!-- Side Header Inner End -->
+        </div><!-- Side Header End -->
+
+    <!-- Content Body Start -->
+        {% block content %}
+
+        {% endblock %}
+    <!-- Content Body End -->
+
+        <!-- Footer Section Start -->
+        <div class="footer-section">
+            <div class="container-fluid">
+
+                <div class="footer-copyright text-center">
+                    <p class="text-body-light">2023 &copy; <a href="/">Meek Broker</a></p>
+                </div>
+
+            </div>
+        </div><!-- Footer Section End -->
+
+    </div>
+
+    <!-- JS
+============================================ -->
+
+    <!-- Global Vendor, plugins & Activation JS -->
+    <script src="{% static 'profile/assets/js/vendor/modernizr-3.6.0.min.js' %}"></script>
+    <script src="{% static 'profile/assets/js/vendor/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'profile/assets/js/vendor/popper.min.js' %}"></script>
+    <script src="{% static 'profile/assets/js/vendor/bootstrap.min.js' %}"></script>
+    <!--Plugins JS-->
+    <script src="{% static 'profile/assets/js/plugins/perfect-scrollbar.min.js' %}"></script>
+    <script src="{% static 'profile/assets/js/plugins/tippy4.min.js.js' %}"></script>
+    <!--Main JS-->
+    <script src="{% static 'profile/assets/js/main.js' %}"></script>
+
+    <!-- Plugins & Activation JS For Only This Page -->
+
+    <!--Moment-->
+    <script src="{% static 'profile/assets/js/plugins/moment/moment.min.js' %}"></script>
+
+    <!--Daterange Picker-->
+    <script src="{% static 'profile/assets/js/plugins/daterangepicker/daterangepicker.js' %}"></script>
+    <script src="{% static 'profile/assets/js/plugins/daterangepicker/daterangepicker.active.js' %}"></script>
+
+    <!--Echarts-->
+    <script src="{% static 'profile/assets/js/plugins/chartjs/Chart.min.js' %}"></script>
+    <script src="{% static 'profile/assets/js/plugins/chartjs/chartjs.active.js' %}"></script>
+
+    <!--VMap-->
+    <script src="{% static 'profile/assets/js/plugins/vmap/jquery.vmap.min.js' %}"></script>
+    <script src="{% static 'profile/assets/js/plugins/vmap/maps/jquery.vmap.world.js' %}"></script>
+    <script src="{% static 'profile/assets/js/plugins/vmap/maps/samples/jquery.vmap.sampledata.js' %}"></script>
+    <script src="{% static 'profile/assets/js/plugins/vmap/vmap.active.js' %}"></script>
+
+</body>
+
+</html>

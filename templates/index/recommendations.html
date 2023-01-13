@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Refferal</title>
+</head>
+<body>
+
+
+<h2>ALl Parents</h2>
+<P>{{ parents }}</P>
+
+{% if my_recs %}
+<ul>
+<h2>Only My ALl recommendations</h2>
+    {% for ref in my_recs %}
+    <li>
+        {{ ref.user }} - {{ ref.pk }}
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<h1>No Refer Yet</h1>
+{% endif %}
+
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+{% extends 'profile/signup/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+        Registration
+{% endblock %}
+
+{% block content %}
+    <div class="main-wrapper">
+
+        <!-- Content Body Start -->
+        <div class="content-body m-0 p-0">
+
+            <div class="login-register-wrap">
+                <div class="row">
+
+                    <div class="d-flex align-self-center justify-content-center order-2 order-lg-1 col-lg-5 col-12">
+                        <div class="login-register-form-wrap">
+
+                            <div class="content">
+                                <h1>Sign up</h1>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            </div>
+
+                            <div class="login-register-form">
+                                <form method="post" action=" ">
+                                    {% csrf_token %}
+                                    <div class="row">
+
+                                        <div class="col-12 mb-20">
+                                            {{ form.username.errors }}
+                                            {% render_field form.username class="form-control" hx-posts="/check_username/" hx-trigger="keyup" hx-target="#username-error" %}
+                                            <div id="username"></div>
+                                        </div>
+
+                                        <div class="col-12 mb-20">
+                                            {{ form.password1.errors }}
+                                            {{ form.password1|add_class:"form-control" }}
+                                        </div>
+                                        <div class="col-12 mb-20">
+                                            {{ form.password2.errors }}
+                                            {{ form.password2|add_class:"form-control" }}
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="row justify-content-between">
+                                                <div class="col-auto mb-15">Already have account? <a href="/signin/">Login Now.</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-10"><button class="button button-primary button-outline">sign up</button></div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="login-register-bg order-1 order-lg-2 col-lg-7 col-12">
+                        <div class="content">
+                            <h1>Sign up</h1>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div><!-- Content Body End -->
+    </div>
+
+{% endblock %}

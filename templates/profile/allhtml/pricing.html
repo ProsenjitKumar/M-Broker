@@ -1,0 +1,50 @@
+{% extends 'profile/base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+        <!-- Content Body Start -->
+        <div class="content-body">
+
+            <!-- Page Headings Start -->
+            <div class="row justify-content-between align-items-center mb-10">
+
+                <!-- Page Heading Start -->
+                <div class="col-12 col-lg-auto mb-20">
+                    <div class="page-heading">
+                        <h3>Deposit Area <span>/ Choose Deposit Method</span></h3>
+                    </div>
+                </div><!-- Page Heading End -->
+
+            </div><!-- Page Headings End -->
+
+
+
+            <!-- Pricing Two Start -->
+            <h3 class="text-center mb-35">Style 2</h3>
+            {% for object in object_list %}
+            <div class="row justify-content-center mb-50">
+
+                <div class="pricing-two col-lg-auto col-12 mb-30">
+                    <div class="inner">
+
+                        <div class="head">
+                            <div class="icon"><img src="{{ MEDIA_URL }}{{ object.logo.url }}" alt=""></div>
+                            <div class="info">
+                                <h1 class="price">{{ object.currency_name }}</h1>
+                            </div>
+                        </div>
+
+                        <div class="foot text-center">
+                            <button class="button button-primary"><a href="{% url 'deposit-payment-method-detail' object.pk object.slug %}">Deposit Now</a></button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div><!-- Pricing Two End -->
+        {% endfor %}
+
+
+        </div><!-- Content Body End -->
+{% endblock %}

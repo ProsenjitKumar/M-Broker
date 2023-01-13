@@ -1,0 +1,77 @@
+{% extends 'profile/base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  display: flex;
+}
+
+/* Create three equal columns that sits next to each other */
+.column {
+  flex: 33.33%;
+  padding: 5px;
+    align-items: center;
+
+}
+
+.column img{
+    height: 50px;
+    width: 40px;
+}
+
+</style>
+
+
+        <!-- Content Body Start -->
+        <div class="content-body">
+
+            <!-- Page Headings Start -->
+            <div class="row justify-content-between align-items-center mb-10">
+
+                <!-- Page Heading Start -->
+                <div class="col-12 col-lg-auto mb-20">
+                    <div class="page-heading">
+                        <h3>Deposit Area <span>/ Choose Payment Method</span></h3>
+                    </div>
+                </div><!-- Page Heading End -->
+
+            </div><!-- Page Headings End -->
+
+
+
+            <!-- Pricing Two Start -->
+            <h3 class="text-center mb-35">Payment Method</h3>
+
+            <div class="row justify-content-center mb-50">
+
+                <div class="pricing-two col-lg-auto col-12 mb-30">
+                    <div class="inner">
+
+                        <div class="row">
+                        {% for object in object_list %}
+
+                          <div class="column">
+                            <a href="{% url 'coin-details' object.slug %}"><img src="{{ MEDIA_URL }}{{ object.logo.url }}" alt="Snow" style="width:100%"></a>
+                          <span><a href="{% url 'coin-details' object.slug %}">{{ object.coin_name }}</a></span>
+                          </div>
+
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                </div>
+
+            </div><!-- Pricing Two End -->
+
+
+        </div><!-- Content Body End -->
+{% endblock %}

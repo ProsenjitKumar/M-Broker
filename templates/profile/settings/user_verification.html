@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form method="post" action=" ">
+    {% csrf_token %}
+    {% if messages %}
+                                        <ul class="alert alert-danger" style="list-style: none;">
+                                            {% for message in messages %}
+                                            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                                                <p style="color: red">{{ message }}</p>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                        {% endif %}
+    {{ form.as_p }}
+<button>Submit</button>
+</form>
+
+
+
+</body>
+</html>

@@ -1,0 +1,182 @@
+{% extends 'profile/base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+        <!-- Content Body Start -->
+        <div class="content-body">
+
+            <!-- Page Headings Start -->
+            <div class="row justify-content-between align-items-center mb-10">
+
+                <!-- Page Heading Start -->
+                <div class="col-12 col-lg-auto mb-20">
+                    <div class="page-heading">
+                        <h3>Profile</h3>
+                    </div>
+                </div><!-- Page Heading End -->
+
+            </div><!-- Page Headings End -->
+
+            <div class="row mbn-50">
+
+                <!--Author Top Start-->
+                <div class="col-12 mb-50">
+                    <div class="author-top">
+                        <div class="inner">
+                            <div class="author-profile">
+                                <div class="image">
+                                    <img src="assets/images/avatar/profile.jpg" class="d-none" alt="">
+                                    <h2>{{ profile.user.username }}</h2>
+                                    <button class="edit"><i class="zmdi zmdi-cloud-upload"></i>Change Image</button>
+                                </div>
+                                <div class="info">
+                                    <h5>{{ profile.user.get_full_name }}</h5>
+                                    <span>{{ profile.user.username }}</span>
+                                    <a href="#" class="edit"><i class="zmdi zmdi-edit"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Author Top End-->
+
+
+                <!--Right Sidebar Start-->
+                <div class="col-xlg-4 col-12 mb-50">
+                    <div class="row mbn-30">
+
+                        <!--Author Information Start-->
+                        <div class="col-xlg-12 col-lg-6 col-12 mb-30">
+                            <div class="box">
+                                <div class="box-head">
+                                    <h3 class="title">Profile Information</h3>
+                                </div>
+                                <div class="box-body">
+                                    <div class="form">
+                                        <form action="{% url 'profile' %}" method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="row row-10 mbn-20">
+
+
+                                            {% if messages %}
+                        {% for message in messages %}
+                            {% if 'success' == message.tags %}
+                                <ul class="alert alert-success" style="list-style: none;">
+                                <li><strong style="color: #23de06">{{ message }}</strong></li>
+                                </ul>
+
+                                {% elif 'error' == message.tags %}
+                                <ul class="alert alert-danger" style="list-style: none;">
+                                <li><strong style="color: #de063f">{{ message }}</strong></li>
+                                </ul>
+
+                            {% endif %}
+                        {% endfor %}
+                         {% endif %}
+
+
+                                            <h2 class="h5 my-4">Info</h2>
+                                <div class="col-sm-6 col-12 mb-20">
+                                    <label for="first_name">First Name</label>
+                                    <input name="first_name" class="form-control" id="first_name" type="text"
+                                           placeholder="Enter your first name" value="{{ profile.user.first_name }}"
+                                           required>
+                                </div>
+
+                                <div class="col-sm-6 col-12 mb-20">
+                                    <label for="last_name">Last Name</label>
+                                    <input name="last_name" class="form-control" id="last_name" type="text"
+                                           placeholder="Also your last name" value="{{ profile.user.last_name }}"
+                                           required>
+                                </div>
+
+                                <label for="birthday">Birthday</label>
+                                <div class="col-sm-6 col-12 mb-20">
+
+                                    <input name="birthday" data-datepicker="" class="form-control input-date-single" id="birthday"
+                                           type="text" placeholder="dd/mm/yyyy" value="{{ profile.birthday|date:'m/d/Y'|default:'' }}" required>
+                                </div>
+
+                            <div class="col-lg-4 col-12 mb-30">
+                                <label for="gender">Gender</label>
+                                <select name="gender" class="form-control nice-select" id="gender"
+                                        aria-label="Gender select example">
+                                {% for key, value in profile.GENDER_CHOICES %}
+
+                                        <option value="{{ key }}"
+                                                {% if profile.gender == key %}selected{% endif %}>{{ value }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+
+                                <div class="col-sm-6 col-12 mb-20">
+                                    <label for="email">Email</label>
+                                    <input name="email" class="form-control" id="email" type="email"
+                                           placeholder="name@company.com" value="{{ profile.user.email }}" required>
+                                </div>
+
+                                <div class="col-sm-6 col-12 mb-20">
+                                    <label for="phone">Phone</label>
+                                    <input name="phone" class="form-control" id="phone" type="number"
+                                           placeholder="+12-345 678 910" value="{{ profile.phone }}" required>
+                                </div>
+
+
+                        <h2 class="h5 my-4">Address</h2>
+
+
+                                <div class="col-sm-6 col-12 mb-20">
+                                    <label for="address">Address</label>
+                                    <input name="address" class="form-control" id="address" type="text"
+                                           placeholder="Enter your home address" value="{{ profile.address|default:'' }}" required>
+                                </div>
+
+
+                                <div class="col-sm-6 col-12 mb-20">
+                                    <label for="number">Number</label>
+                                    <input name="number" class="form-control" id="number" type="number"
+                                           placeholder="No." value="{{ profile.number|default:'' }}" required>
+                                </div>
+
+                                <div class="col-sm-6 col-12 mb-20">
+                                    <label for="city">City</label>
+                                    <input name="city" class="form-control" id="city" type="text" placeholder="City"
+                                           value="{{ profile.city|default:'' }}" required>
+                                </div>
+
+
+                                <div class="col-sm-6 col-12 mb-20">
+                                    <label for="zip">ZIP</label>
+                                    <input name="zip" class="form-control" id="zip" type="tel" placeholder="ZIP"
+                                           value="{{ profile.zip|default:'' }}" required>
+                                </div>
+
+
+
+
+                                                <div class="col-12 mt-10 mb-20">
+                                                    <input type="submit" class="button button-primary button-outline" value="Save Changes">
+                                                    <input type="submit" class="button button-danger button-outline" value="Delete Changes">
+                                                </div>
+
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--Author Information End-->
+
+                    </div>
+                </div>
+                <!--Right Sidebar End-->
+
+            </div>
+
+        </div><!-- Content Body End -->
+
+ {% endblock %}

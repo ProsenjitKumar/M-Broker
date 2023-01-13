@@ -1,0 +1,8 @@
+{% extends 'profile/base/base.html' %}
+{% load static %}
+
+{% block content %}
+    {% for object in object_list %}
+       <p ><a href="{% url 'deposit-payment-method-detail' object.pk object.slug %}" style="color: #2da80a!important;">{{ object.currency_name }}</a> </p>
+    {% endfor %}
+{% endblock %}

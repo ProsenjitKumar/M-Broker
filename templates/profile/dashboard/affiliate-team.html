@@ -1,0 +1,79 @@
+{% extends 'profile/base/base.html' %}
+{% load static %}
+{% load mptt_tags %}
+
+
+{% block content %}
+
+        <!-- Content Body Start -->
+        <div class="content-body">
+
+            <!-- Page Headings Start -->
+            <div class="row justify-content-between align-items-center mb-10">
+
+                <!-- Page Heading Start -->
+                <div class="col-12 col-lg-auto mb-20">
+                    <div class="page-heading">
+                        <h3>Referral <span>/ Team</span></h3>
+                    </div>
+                </div><!-- Page Heading End -->
+
+            </div><!-- Page Headings End -->
+
+
+         <h3 class="title" ><a href="https://meekbroker.com/{{ aff_code }}" id="myText" >https://meekbroker.com/{{ aff_code }}</a></h3><br>
+         <button onclick="copyContent()" class="button button-primary">Copy referral link!</button>
+
+                            <script>
+                              let text = document.getElementById('myText').innerHTML;
+                              const copyContent = async () => {
+
+                                try {
+                                  await navigator.clipboard.writeText(text);
+                                  console.log('Content copied to clipboard');
+                                  alert("Successfully Copied!");
+
+                                } catch (err) {
+                                  console.error('Failed to copy: ', err);
+                                }
+                              }
+                            </script>
+
+
+        <br>
+        <br>
+
+
+{#  <ul class="root">#}
+{#    {% recursetree family %}#}
+{#        <li>#}
+{#            {{ node.account }}#}
+{#            {% if not node.is_leaf_node %}#}
+{#                <ul class="children">#}
+{#                    {{ children }}#}
+{#                </ul>#}
+{#            {% endif %}#}
+{#        </li>#}
+{#    {% endrecursetree %}#}
+{#</ul>#}
+
+
+
+            {% recursetree total_downlines %}
+    <li>
+        <a href="../{{ node.id }}">{{ node.account }}</a>
+        {% if not node.is_leaf_node %}
+            <ul class="children {% if node.level == 1 %}class_1{% elif node.level == 2 %}class_2{% endif %}">
+                <em>{{ children }}</em>
+            </ul>
+        {% endif %}
+    </li>
+{% endrecursetree %}
+
+</ol>
+</div>
+
+
+
+        </div><!-- Content Body End -->
+{% endblock %}
