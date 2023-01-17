@@ -5,7 +5,7 @@ from .models import DepositRequestConfirmation, InvestmentRequest
 
 
 class DepositConfirmationAdmin(admin.ModelAdmin):
-    list_display = ['user', 'amount_deposited', 'active', 'updated_at', 'created_at',]
+    list_display = ['user', 'amount_deposited', 'confirmed', 'active', 'updated_at', 'created_at',]
     search_fields = ['amount_deposited',]
     list_per_page = 30
 

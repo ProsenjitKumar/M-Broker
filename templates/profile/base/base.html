@@ -55,8 +55,8 @@
                     <!-- Header Logo (Header Left) Start -->
                     <div class="header-logo col-auto">
                         <a href="/">
-                            <img src="{% static 'profile/assets/images/logo/logo.png' %}" alt="">
-                            <img src="{% static 'profile/assets/images/logo/logo-light.png' %}" class="logo-light" alt="">
+                            <img src="{% static 'index/assets/img/logo/mkb.PNG' %}" style="width: 140px;height: 83px" alt="">
+                            <img src="{% static 'index/assets/img/logo/mkb.PNG' %}" style="width: 140px;height: 83px" class="logo-light" alt="">
                         </a>
                     </div><!-- Header Logo (Header Left) End -->
 
@@ -80,7 +80,10 @@
                                 <ul class="header-notification-area">
 
                                     <li class="adomx-dropdown position-relative col-auto">
-                                        <button class="button button-outline button-success"><span><a href="/coin-list/">${% number_of_messages request %}</a> </span></button>
+                                        <button class="button button-success"><span><a href="/coin-list/">Deposit</a> </span></button>
+                                        <button class="button button-outline button-success"><span><a href="/coin-list/">${% number_of_messages request %}</a>
+                                        </span></button>
+
                                     </li>
 
                                     <!--Notification-->
@@ -90,74 +93,19 @@
                                         <!-- Dropdown -->
                                         <div class="adomx-dropdown-menu dropdown-menu-notifications">
                                             <div class="head">
-                                                <h5 class="title">You have 4 new notification.</h5>
+                                                <h5 class="title">You have 1 new notification.</h5>
                                             </div>
                                             <div class="body custom-scroll">
                                                 <ul>
                                                     <li>
                                                         <a href="#">
                                                             <i class="zmdi zmdi-notifications-none"></i>
-                                                            <p>There are many variations of pages available.</p>
-                                                            <span>11.00 am   Today</span>
+                                                            <p>Thanks {{ request.user.username }}, for joining with us. It's a new investment journey.</p>
+                                                            <span>11.00 am Today</span>
                                                         </a>
                                                         <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
                                                     </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="zmdi zmdi-block"></i>
-                                                            <p>There are many variations of pages available.</p>
-                                                            <span>11.00 am   Today</span>
-                                                        </a>
-                                                        <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="zmdi zmdi-info-outline"></i>
-                                                            <p>There are many variations of pages available.</p>
-                                                            <span>11.00 am   Today</span>
-                                                        </a>
-                                                        <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="zmdi zmdi-shield-security"></i>
-                                                            <p>There are many variations of pages available.</p>
-                                                            <span>11.00 am   Today</span>
-                                                        </a>
-                                                        <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="zmdi zmdi-notifications-none"></i>
-                                                            <p>There are many variations of pages available.</p>
-                                                            <span>11.00 am   Today</span>
-                                                        </a>
-                                                        <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="zmdi zmdi-block"></i>
-                                                            <p>There are many variations of pages available.</p>
-                                                            <span>11.00 am   Today</span>
-                                                        </a>
-                                                        <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="zmdi zmdi-info-outline"></i>
-                                                            <p>There are many variations of pages available.</p>
-                                                            <span>11.00 am   Today</span>
-                                                        </a>
-                                                        <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="zmdi zmdi-shield-security"></i>
-                                                            <p>There are many variations of pages available.</p>
-                                                            <span>11.00 am   Today</span>
-                                                        </a>
-                                                        <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
-                                                    </li>
+
                                                 </ul>
                                             </div>
                                             <div class="footer">
@@ -257,7 +205,7 @@
                                 <li><a href="/upcoming/"><span>Transaction History</span></a></li>
                                 <li><a href="/upcoming/"><span>Account History</span></a></li>
                                 <li><a href="/upcoming/"><span>Copytrader History</span></a></li>
-                                <li><a href="/upcoming/"><span>Investment History</span></a></li>
+                                <li><a href="/investment-history/"><span>Investment History</span></a></li>
                                 <li><a href="/deposit-history/"><span>Deposit History</span></a></li>
                             </ul>
                         </li>
@@ -272,12 +220,12 @@
                             </ul>
                         </li>
                         <li><a href="/upcoming/"><i class="ti-help-alt"></i> <span>Help & Support</span></a></li>
-                        <li><a href="/upcoming/"><i class="ti-help-alt"></i> <span>FAQ</span></a></li>
+                        <li><a href="/upcoming/"><i class="zmdi zmdi-pin-help"></i> <span>FAQ</span></a></li>
 
 
-                        <li class="has-sub-menu"><a href="#"><i class="ti-package"></i> <span>Upcoming</span></a>
+                        <li class="has-sub-menu"><a href="#"><i class="zmdi zmdi-chart"></i> <span>Trading Platform</span></a>
                             <ul class="side-header-sub-menu">
-                                <li><a href="/upcoming/"><span>Trading</span></a></li>
+                                <li><a href="/upcoming/"><span>Trading Journey</span></a></li>
                                 <li><a href="/upcoming/"><span>Trading Balance</span></a></li>
                             </ul>
                         </li>

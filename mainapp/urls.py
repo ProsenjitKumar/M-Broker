@@ -4,7 +4,7 @@ from .views import main_view, signup_view, login_view, user_logout,\
 
 urlpatterns = [
     re_path('^$', main_view, name='main_view'),
-    re_path('signup/', signup_view, name='signup'),
+    # re_path('signup/', signup_view, name='signup'),
     re_path('signin/', login_view, name='signin'),
     re_path('logout/', user_logout, name='logout'),
     re_path('dashboard/', dashboard, name='dashboard'),

@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-2mb^%5$6bz8i*&1v@ahlgtgf9mcj5rl!a1e77z#)jq_fjf*r4x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     # my app
     'app.apps.AppConfig',
     'mainapp',
@@ -52,6 +53,19 @@ INSTALLED_APPS = [
     'polymorphic',
     'widget_tweaks',
 ]
+
+# -------------------------------
+#                                |
+#           Configure New Library
+#                                |
+# -------------------------------
+
+
+# -------------------------------
+#                                |
+#           End - Configure New Library
+#                                |
+# -------------------------------
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

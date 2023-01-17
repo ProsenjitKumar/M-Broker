@@ -1,0 +1,83 @@
+{% extends 'profile/base/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+        <!-- Content Body Start -->
+        <div class="content-body">
+
+            <!-- Page Headings Start -->
+            <div class="row justify-content-between align-items-center mb-10">
+                <!-- Page Heading Start -->
+                <div class="col-12 col-lg-auto mb-20">
+                    <div class="page-heading">
+                        <h3>Package Run <span>/ Investment History</span></h3>
+                    </div>
+                </div><!-- Page Heading End -->
+            </div><!-- Page Headings End -->
+
+        <!-- ****************************
+        |
+        |        Main Content Start
+        |
+         ******************************** -->
+
+        <!--Table Head Light Start-->
+                <div class="col-lg-6 col-12 mb-30">
+                    <div class="box">
+                        <div class="box-head">
+                            <h4 class="title">Your All Time Investment History</h4>
+                        </div>
+                        <div class="box-body">
+
+
+                            <table class="table">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Scheme</th>
+                                        <th>Amount</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for object in object_list %}
+                                    <tr>
+                                        <th><i class="ti-arrow-right"></i></th>
+                                        {% if object.scheme == '1' %}
+                                        <td>15 Working Days Profit 1% Up To 2% Min. $20 Up To.</td>
+                                        {% elif object.scheme == '2' %}
+                                        <td>30 Working Days Profit 1.5% Up To Min. 3% $200 Up To</td>
+                                        {% elif object.scheme == '3' %}
+                                        <td>50 Working Days Profit 2% Up To 4% Min. $500 Up To</td>
+                                        {% endif %}
+                                    {% if object.amount %}
+                                        <td>${{ object.amount }}</td>
+                                        {% else %}
+                                        <td>None</td>
+                                    {% endif %}
+                                        <td>{{ object.created_at }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                    </div>
+                </div>
+                <!--Table Head Light End-->
+
+
+
+        <!-- ****************************
+        |
+        |        Main Content End
+        |
+         ******************************** -->
+
+
+
+        </div><!-- Content Body End -->
+{% endblock %}

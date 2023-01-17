@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import TextInput
-from .models import DepositRequestConfirmation, InvestmentRequest
+from .models import DepositRequestConfirmation, InvestmentRequest,\
+    INVESTMENT_SELECT
 
 
 # -------------------------------
@@ -24,6 +25,7 @@ class DepositConfirmationForm(forms.ModelForm):
 
 
 class InvestmentRequestForm(forms.ModelForm):
+    scheme = forms.ChoiceField(choices=INVESTMENT_SELECT, required=True)
     class Meta:
         model = InvestmentRequest
         fields = '__all__'

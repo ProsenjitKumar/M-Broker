@@ -39,7 +39,7 @@ def coin_detail_view(request, slug, *args, **kwargs):
     }
 
     if form.is_valid():
-        referral.increase_balance(float(submit_amount))
+        # referral.increase_balance(float(submit_amount))
         # latest_obj.update_selected_coin(balance)
         confirm = form.save(commit=False)
         confirm.user = request.user

@@ -1,13 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from withdraw.models import COIN_SELECTED
 
 # Create your models here.
-
-COIN_SELECTED = (
-    ('1', 'Bitcoin'),
-    ('2', 'Litecoin'),
-    ('3', 'Ethereum'),
-)
 
 
 class DepositRequestConfirmation(models.Model):
@@ -18,6 +13,7 @@ class DepositRequestConfirmation(models.Model):
     balance = models.FloatField(blank=True, null=True)
 
     active = models.BooleanField(default=False)
+    confirmed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -28,11 +24,18 @@ class DepositRequestConfirmation(models.Model):
         self.balance = balance
         self.save()
 
+    def update_active(self, active):
+        self.active = active
+        self.save()
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
 
 INVESTMENT_SELECT = (
-    ('1', '15 Working Days Profit 1% Up To 2%'),
-    ('2', '30 Working Days Profit 1.5% Up To 3%'),
-    ('3', '50 Working Days Profit 2% Up To 4%'),
+    ('1', '15 Working Days Profit 1% Up To 2% Min. $20 Up To.'),
+    ('2', '30 Working Days Profit 1.5% Up To Min. 3% $200 Up To'),
+    ('3', '50 Working Days Profit 2% Up To 4% Min. $500 Up To'),
 )
 
 

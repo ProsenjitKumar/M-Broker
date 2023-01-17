@@ -1,7 +1,9 @@
+from apscheduler.schedulers.background import BackgroundScheduler
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpRequest
 from django.shortcuts import render, redirect, HttpResponse
 from .models import Referral, Profile
+from deposit.models import DepositRequestConfirmation, InvestmentRequest
 from .forms import SignupForm, LoginForm, ProfileForm, form_validation_error,\
     ContactForm
 from django.contrib.auth import login, authenticate, logout
@@ -65,7 +67,16 @@ def upcoming_view(request):
 #                                |
 # -------------------------------
 @csrf_protect
-def signup_view(request):
+def signup_view(request, *args, **kwargs):
+    code = str(kwargs.get('ref_code'))
+
+    try:
+        profile = Referral.objects.get(code=code)
+        request.session['ref_profile'] = profile.id
+        print('id = ', profile.id)
+        print("profile", profile)
+    except:
+        pass
     profile_id = request.session.get('ref_profile')
     print('profile_id = ', profile_id)
     form = SignupForm(request.POST or None)
@@ -144,18 +155,122 @@ def user_logout(request):
 #           Dashboard View
 #                                |
 # -------------------------------
+# import time
+# from timeloop import Timeloop
+# from datetime import timedelta
+#
+# tl = Timeloop()
+# @tl.job(interval=timedelta(seconds=5))
 @login_required(login_url='/signin/')
 def dashboard(request):
+    print('dashboard')
     referrals = Referral.objects.get(account=request.user)
     last_login = User.objects.get(username=request.user)
-    print(last_login.last_login)
+    # print("call Dask cluster 300s job current time : {}".format(time.ctime()))
+    # tl.start()
+    # print(last_login.last_login)
+    # scheduler.shutdown()
+
+    # deposit active
+    deposit = DepositRequestConfirmation.objects.filter(user=request.user)
+    if deposit:
+        early_deposited = deposit.latest('created_at')
+        early_deposited_amount = early_deposited.amount_deposited
+        balance = referrals.balance
+        # print("current Balance: ", balance)
+        # print("All deposited: ", deposit)
+        # print("Early deposited: ", early_deposited)
+        # print("Early deposited amount: ", early_deposited_amount)
+        updated_deposited = early_deposited.updated_at
+        updated_referral_balance = referrals.updated_at
+        print("Updated at deposit", updated_deposited)
+        print("Updated at balance", updated_referral_balance)
+        if early_deposited.active and early_deposited.updated_at:
+            print("activated")
+            referrals.increase_balance(early_deposited_amount)
+            active = False
+            early_deposited.update_active(active)
+
+            print("successfully added")
+        else:
+            print("not activated yet")
+
+    # Level Income
+    downlines = referrals.get_descendants().filter(level__lte=referrals.level + 2)
+    print("Level", downlines)
+
+    # amar downnliner incomer 8 % pabo first generation
+    # second generation - 6 %
+    # third generation - 5 %
+    # ---------- 10 th
+
+    # ROI Profit
+
 
     balance = referrals.balance
+    roi_profit = referrals.roi_profit
+    refer_bonus = referrals.direct_refer_income
+    level_income = referrals.level_income
+
     context = {
-        'balance': balance
+        'balance': balance,
+        'roi_profit': roi_profit,
+        'refer_bonus': refer_bonus,
+        'level_income': level_income,
     }
     return render(request, 'profile/dashboard/index.html', context)
 
+# -------------------------------
+#                                |
+#           Django Schedule Job
+#                                |
+# -------------------------------
+class Profit(View):
+    def get(self, request):
+        # referrals = Referral.objects.get(account=request.user)
+        # print(referrals)
+        print('its class')
+        return None
+
+def roi_profit(request):
+    referrals = Referral.objects.get(account=request.user)
+    print(referrals)
+    # dashboard(request)
+
+scheduler = BackgroundScheduler()
+job = None
+from rest_framework.request import HttpRequest, Request
+
+def tick():
+    print('One tick!')
+    obj = Profit()
+    # make http request object
+    http_request_obj = HttpRequest()
+    # make http request object
+    request = Request(http_request_obj)
+    query_output_data = obj.get(request)
+
+    # redirect(dashboard)
+    # HttpResponseRedirect('/dashboard/')
+    # dashboard(request='prosenjit')
+    # return data
+
+def start_job():
+    global job
+    job = scheduler.add_job(tick, 'interval', seconds=3)
+    try:
+        scheduler.start()
+    except:
+        pass
+
+
+# start_job()
+
+# -------------------------------
+#                                |
+#           Django Schedule Job End
+#                                |
+# -------------------------------
 
 # Profile Update
 @method_decorator(login_required(login_url='/signin/'), name='dispatch')
@@ -189,7 +304,7 @@ class ProfileView(View):
 # Affiliate Team
 @login_required(login_url='/signin/')
 def affiliate_team(request):
-
+    # start_job()
     referrals = Referral.objects.get(account=request.user)
     family = referrals.get_family()
     direct_refers = referrals.get_children()
@@ -229,3 +344,12 @@ def account_info(request):
     }
 
     return render(request, 'profile/dashboard/account-info.html', context)
+
+
+# -------------------------------
+#                                |
+#           404 View
+#                                |
+# -------------------------------
+def error_404(request, exception):
+    return render(request, 'profile/error/404.html')

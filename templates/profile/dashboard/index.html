@@ -1,6 +1,10 @@
 {% extends 'profile/base/base.html' %}
 {% load static %}
 
+{% block title %}
+    Dashboard
+        {% endblock %}
+
 {% block content %}
  <!-- Content Body Start -->
         <div class="content-body">
@@ -62,14 +66,14 @@
 
                         <!-- Head -->
                         <div class="head">
-                            <h4>Profit</h4>
+                            <h4>ROI Profit</h4>
                             <a href="#" class="view"><i class="ti-money"></i></a>
                         </div>
 
                         <!-- Content -->
                         <div class="content">
                             <h5>Todays</h5>
-                            <h2>0.00</h2>
+                            <h2>{{ roi_profit }}</h2>
                         </div>
 
                         <!-- Footer -->
@@ -77,7 +81,7 @@
                             <div class="progess">
                                 <div class="progess-bar" style="width: 100%;"></div>
                             </div>
-                            <p>All sides profit</p>
+                            <p>Return of investment profit</p>
                         </div>
 
                     </div>
@@ -89,14 +93,14 @@
 
                         <!-- Head -->
                         <div class="head">
-                            <h4>Trader Balance</h4>
+                            <h4>Refer Bonus</h4>
                             <a href="#" class="view"><i class="ti-money"></i></a>
                         </div>
 
                         <!-- Content -->
                         <div class="content">
                             <h5>Todays</h5>
-                            <h2>0.00</h2>
+                            <h2>{{ refer_bonus }}</h2>
                         </div>
 
                         <!-- Footer -->
@@ -104,7 +108,7 @@
                             <div class="progess">
                                 <div class="progess-bar" style="width: 100%;"></div>
                             </div>
-                            <p>Current trading in your account</p>
+                            <p>Recent refer bonus</p>
                         </div>
 
                     </div>
@@ -116,14 +120,14 @@
 
                         <!-- Head -->
                         <div class="head">
-                            <h4>Total Revenue</h4>
+                            <h4>Level Income</h4>
                             <a href="#" class="view"><i class="ti-money"></i></a>
                         </div>
 
                         <!-- Content -->
                         <div class="content">
                             <h5>Todays</h5>
-                            <h2>0.00</h2>
+                            <h2>{{ level_income }}</h2>
                         </div>
 
                         <!-- Footer -->
@@ -131,7 +135,7 @@
                             <div class="progess">
                                 <div class="progess-bar" style="width: 76%;"></div>
                             </div>
-                            <p>This day revenue</p>
+                            <p>This day level profit</p>
                         </div>
 
                     </div>

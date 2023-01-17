@@ -21,7 +21,7 @@
             </div><!-- Page Headings End -->
 
 
-         <h3 class="title" ><a href="https://meekbroker.com/{{ aff_code }}" id="myText" >https://meekbroker.com/{{ aff_code }}</a></h3><br>
+         <h3 class="title" ><a href="https://meekbroker.com/signup/{{ aff_code }}" id="myText" >https://meekbroker.com/signup/{{ aff_code }}</a></h3><br>
          <button onclick="copyContent()" class="button button-primary">Copy referral link!</button>
 
                             <script>
@@ -60,15 +60,19 @@
 
 
             {% recursetree total_downlines %}
-    <li>
-        <a href="../{{ node.id }}">{{ node.account }}</a>
-        {% if not node.is_leaf_node %}
-            <ul class="children {% if node.level == 1 %}class_1{% elif node.level == 2 %}class_2{% endif %}">
-                <em>{{ children }}</em>
-            </ul>
-        {% endif %}
-    </li>
-{% endrecursetree %}
+                <li>
+                    <a href="../{{ node.id }}">{{ node.account }}</a>
+                    {% if not node.is_leaf_node %}
+                        <ul class="children
+                            {% if node.level == 1 %}class_1
+                            {% elif node.level == 2 %}class_2
+                            {% elif node.level == 3 %}class_3
+                            {% endif %}">
+                            <em>{{ children }}</em>
+                        </ul>
+                    {% endif %}
+                </li>
+            {% endrecursetree %}
 
 </ol>
 </div>

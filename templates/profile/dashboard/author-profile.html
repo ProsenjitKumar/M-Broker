@@ -1,5 +1,6 @@
 {% extends 'profile/base/base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block content %}
 
@@ -26,9 +27,11 @@
                         <div class="inner">
                             <div class="author-profile">
                                 <div class="image">
-                                    <img src="assets/images/avatar/profile.jpg" class="d-none" alt="">
+                                    <img src="{% static 'profile/assets/images/avatar/profile.jpg' %}" class="d-none" alt="">
+
                                     <h2>{{ profile.user.username }}</h2>
-                                    <button class="edit"><i class="zmdi zmdi-cloud-upload"></i>Change Image</button>
+                                    {{ profile.avatar }}
+
                                 </div>
                                 <div class="info">
                                     <h5>{{ profile.user.get_full_name }}</h5>
@@ -60,20 +63,20 @@
 
 
                                             {% if messages %}
-                        {% for message in messages %}
-                            {% if 'success' == message.tags %}
-                                <ul class="alert alert-success" style="list-style: none;">
-                                <li><strong style="color: #23de06">{{ message }}</strong></li>
-                                </ul>
+                                                {% for message in messages %}
+                                                    {% if 'success' == message.tags %}
+                                                        <ul class="alert alert-success" style="list-style: none;">
+                                                        <li><strong style="color: #23de06">{{ message }}</strong></li>
+                                                        </ul>
 
-                                {% elif 'error' == message.tags %}
-                                <ul class="alert alert-danger" style="list-style: none;">
-                                <li><strong style="color: #de063f">{{ message }}</strong></li>
-                                </ul>
+                                                        {% elif 'error' == message.tags %}
+                                                        <ul class="alert alert-danger" style="list-style: none;">
+                                                        <li><strong style="color: #de063f">{{ message }}</strong></li>
+                                                        </ul>
 
-                            {% endif %}
-                        {% endfor %}
-                         {% endif %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
 
 
                                             <h2 class="h5 my-4">Info</h2>
@@ -133,12 +136,6 @@
                                            placeholder="Enter your home address" value="{{ profile.address|default:'' }}" required>
                                 </div>
 
-
-                                <div class="col-sm-6 col-12 mb-20">
-                                    <label for="number">Number</label>
-                                    <input name="number" class="form-control" id="number" type="number"
-                                           placeholder="No." value="{{ profile.number|default:'' }}" required>
-                                </div>
 
                                 <div class="col-sm-6 col-12 mb-20">
                                     <label for="city">City</label>

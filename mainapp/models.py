@@ -33,7 +33,7 @@ class Referral(NumeratorMixin, MPTTModel, models.Model):
         verbose_name_plural = _('Referral')
         unique_together = ('parent', 'account')
 
-    limit = 3
+    limit = 10
 
     parent = TreeForeignKey(
         'self', null=True, blank=True,
@@ -51,17 +51,25 @@ class Referral(NumeratorMixin, MPTTModel, models.Model):
         editable=False,
         verbose_name=_("Balance"))
 
-    roi_profit = models.DecimalField(max_digits=15,decimal_places=2, blank=True, null=True)
-    level_income = models.DecimalField(max_digits=15,decimal_places=2, blank=True, null=True)
-    direct_refer_income = models.DecimalField(max_digits=15,decimal_places=2, blank=True, null=True)
-    meek_profit = models.DecimalField(max_digits=15,decimal_places=2, blank=True, null=True)
-    rank_profit = models.DecimalField(max_digits=15,decimal_places=2, blank=True, null=True)
+    roi_profit = models.DecimalField(default=0,max_digits=15,decimal_places=2, blank=True, null=True)
+    total_roi_profit = models.DecimalField(default=0,max_digits=15,decimal_places=2, blank=True, null=True)
+    level_income = models.DecimalField(default=0,max_digits=15,decimal_places=2, blank=True, null=True)
+    total_level_income = models.DecimalField(default=0,max_digits=15,decimal_places=2, blank=True, null=True)
+    direct_refer_income = models.DecimalField(default=0,max_digits=15,decimal_places=2, blank=True, null=True)
+    total_direct_refer_income = models.DecimalField(default=0,max_digits=15,decimal_places=2, blank=True, null=True)
+    meek_profit = models.DecimalField(default=0,max_digits=15,decimal_places=2, blank=True, null=True)
+    rank_profit = models.DecimalField(default=0,max_digits=15,decimal_places=2, blank=True, null=True)
+    today_sell_volume = models.DecimalField(default=0,max_digits=15,decimal_places=2, blank=True, null=True)
+    total_sell_volume = models.DecimalField(default=0,max_digits=15,decimal_places=2, blank=True, null=True)
+    trading_balance = models.DecimalField(default=0,max_digits=15,decimal_places=2, blank=True, null=True)
 
     created_at = models.DateTimeField(
         default=timezone.now, editable=False)
     code = models.CharField(max_length=12, blank=True)
     account_address = models.CharField(max_length=60, blank=True, null=True)
     active = models.BooleanField(default=True)
+    invested = models.BooleanField(default=False)
+    updated_at = models.DateTimeField(auto_now=True)
     # slug = models.SlugField(null=True, blank=True, unique=True)
 
     def __str__(self):
@@ -81,6 +89,22 @@ class Referral(NumeratorMixin, MPTTModel, models.Model):
 
     def increase_balance(self, balance):
         self.balance += decimal.Decimal(balance)
+        self.save()
+
+    def increase_roi_profit(self, roi_profit):
+        self.roi_profit += decimal.Decimal(roi_profit)
+        self.save()
+
+    def increase_total_roi_profit(self, total_roi_profit):
+        self.total_roi_profit += decimal.Decimal(total_roi_profit)
+        self.save()
+
+    def increase_refer_bonus(self, direct_refer_income):
+        self.direct_refer_income += decimal.Decimal(direct_refer_income)
+        self.save()
+
+    def update_invested(self, invested):
+        self.invested = invested
         self.save()
 
     def get_referral_limit(self):

@@ -16,8 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
-from mainapp.views import main_view
+from mainapp.views import main_view, signup_view
 from django.conf.urls.static import static
+from django.conf.urls import handler404, handler500
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +28,10 @@ urlpatterns = [
     path('', include('deposit.urls')),
     path('', include('fund_transfer.urls')),
 
-    path('<str:ref_code>/', main_view, name='main-view'),
+    # path('signup/<str:ref_code>/', main_view, name='main-view'),
+    # path('<str:ref_code>/', main_view, name='main-view'),
+    path('signup/<str:ref_code>/', signup_view, name='signup'),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = 'mainapp.views.error_404'
