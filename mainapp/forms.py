@@ -16,6 +16,7 @@ class SignupForm(UserCreationForm):
 
         widgets = {
             'username': TextInput(attrs={'placeholder': 'Username'}),
+            'email': TextInput(attrs={'placeholder': 'Email'}),
         }
 
 

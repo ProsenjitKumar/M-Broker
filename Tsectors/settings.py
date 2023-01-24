@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_notification',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -59,6 +60,8 @@ INSTALLED_APPS = [
 #           Configure New Library
 #                                |
 # -------------------------------
+NOTIFICATION_MODEL = 'deposit.DepositRequestConfirmation'
+# NOTIFICATION_MODEL = 'withdraw.WithdrawalRequest'
 
 
 # -------------------------------
@@ -155,3 +158,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'photos')
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Email Backend
+
+#MY EMAIL SETTING
+EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mail.meekbroker.com'  #Hosted on namecheap Ex: mail.pure.com
+EMAIL_USE_TLS = False
+EMAIL_PORT = 26 #This will be different based on your Host, for Namecheap I use this`
+EMAIL_HOST_USER = 'company@meekbroker.com' # Ex: info@pure.com
+EMAIL_HOST_PASSWORD = '0gJCbV7Jm6gC' # for the email you created through cPanel. The password for that
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

@@ -21,16 +21,30 @@
         <!--Form Size Start-->
                 <div class="col-12 mb-30">
                     <div class="box">
+
+                           {% if messages %}
+                        {% for message in messages %}
+                            {% if 'success' == message.tags %}
+                                <ul class="alert alert-success" style="list-style: none;">
+                                <li><strong style="color: #23de06">{{ message }}</strong></li>
+                                </ul>
+
+                                {% elif 'error' == message.tags %}
+                                <ul class="alert alert-danger" style="list-style: none;">
+                                <li><strong style="color: #de063f">{{ message }}</strong><br> <strong style="color: #0bb7ff">Please, <a href="/coin-list/">Deposit Funds.</a> </strong></li>
+                                </ul>
+
+                            {% endif %}
+                        {% endfor %}
+                         {% endif %}
+
                         <div class="box-head">
                             <h2><img class="gallery-img" style="height: 50px;width: 50px;font-size: 44px!important;" src="{{ MEDIA_URL }}{{ object.logo.url }}" alt="symbol image" title="symbol image">
                             {{ object.coin_name }}</h2><br>
 
 
-
                             <h5 class="title" style="font-size: 15px" id="myText">{{ object.deposit_address }}</h5><br>
-
                             <button onclick="copyContent()" class="button button-primary">Copy Address!</button><br>
-
                             <br>
                             <h3 class="title" id="myText">If you are a
                                     <span style="color: #12c5cb">

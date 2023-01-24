@@ -48,7 +48,7 @@ class Referral(NumeratorMixin, MPTTModel, models.Model):
         default=0,
         max_digits=15,
         decimal_places=2,
-        editable=False,
+        blank=True, null=True,
         verbose_name=_("Balance"))
 
     roi_profit = models.DecimalField(default=0,max_digits=15,decimal_places=2, blank=True, null=True)
@@ -59,7 +59,7 @@ class Referral(NumeratorMixin, MPTTModel, models.Model):
     total_direct_refer_income = models.DecimalField(default=0,max_digits=15,decimal_places=2, blank=True, null=True)
     meek_profit = models.DecimalField(default=0,max_digits=15,decimal_places=2, blank=True, null=True)
     rank_profit = models.DecimalField(default=0,max_digits=15,decimal_places=2, blank=True, null=True)
-    today_sell_volume = models.DecimalField(default=0,max_digits=15,decimal_places=2, blank=True, null=True)
+    today_sell_volume = models.DecimalField(default=0.01,max_digits=15,decimal_places=2, blank=True, null=True)
     total_sell_volume = models.DecimalField(default=0,max_digits=15,decimal_places=2, blank=True, null=True)
     trading_balance = models.DecimalField(default=0,max_digits=15,decimal_places=2, blank=True, null=True)
 
@@ -79,6 +79,7 @@ class Referral(NumeratorMixin, MPTTModel, models.Model):
             else self.account.get_full_name()
         )
 
+    # Main Balance
     def update_balance(self, balance):
         self.balance = balance
         self.save()
@@ -88,23 +89,35 @@ class Referral(NumeratorMixin, MPTTModel, models.Model):
         self.save()
 
     def increase_balance(self, balance):
-        self.balance += decimal.Decimal(balance)
+        self.balance = self.balance + decimal.Decimal(balance)
         self.save()
 
-    def increase_roi_profit(self, roi_profit):
-        self.roi_profit += decimal.Decimal(roi_profit)
+    # Roi Profit
+    def today_roi_profit(self, roi_profit):
+        self.roi_profit = decimal.Decimal(roi_profit)
         self.save()
 
     def increase_total_roi_profit(self, total_roi_profit):
         self.total_roi_profit += decimal.Decimal(total_roi_profit)
         self.save()
 
+    # Refer Bonus
     def increase_refer_bonus(self, direct_refer_income):
         self.direct_refer_income += decimal.Decimal(direct_refer_income)
         self.save()
 
+    # Invested True False
     def update_invested(self, invested):
         self.invested = invested
+        self.save()
+
+    # Sell Volume
+    def increase_total_sell_volume(self, total_sell_volume):
+        self.total_sell_volume = self.total_sell_volume + decimal.Decimal(total_sell_volume)
+        self.save()
+
+    def increase_today_sell_volume(self, today_sell_volume):
+        self.today_sell_volume = self.today_sell_volume + decimal.Decimal(today_sell_volume)
         self.save()
 
     def get_referral_limit(self):

@@ -44,10 +44,9 @@ def coin_detail_view(request, slug, *args, **kwargs):
         confirm = form.save(commit=False)
         confirm.user = request.user
         confirm.save()
-        messages.success(request, 'Confirmation Send')
+        messages.success(request, 'Successfully Deposit Requested!')
         print("just deposited after form: ", balance)
 
-        return redirect('/dashboard/')
     return render(request, 'profile/cryptocoin/coin-detail.html', context)
 
 

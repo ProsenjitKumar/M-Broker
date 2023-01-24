@@ -4,19 +4,19 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 COIN_SELECTED = (
-    ('1', 'Bitcoin'),
-    ('2', 'USDT'),
-    ('3', 'Ethereum'),
-    ('3', 'BUSD'),
-    ('4', 'Dogecoin'),
-    ('5', 'BNB'),
-    ('6', 'Litecoin'),
-    ('7', 'USDC'),
-    ('8', 'SOL Solana'),
-    ('9', 'BNB'),
-    ('10', 'MATIC Polygon'),
-    ('11', 'XRP Ripple'),
-    ('12', 'ADA Cardano'),
+    ('Bitcoin', 'Bitcoin'),
+    ('USDT', 'USDT'),
+    ('Ethereum', 'Ethereum'),
+    ('BUSD', 'BUSD'),
+    ('Dogecoin', 'Dogecoin'),
+    ('BNB', 'BNB'),
+    ('Litecoin', 'Litecoin'),
+    ('USDC', 'USDC'),
+    ('SOL Solana', 'SOL Solana'),
+    ('BNB', 'BNB'),
+    ('MATIC Polygon', 'MATIC Polygon'),
+    ('XRP Ripple', 'XRP Ripple'),
+    ('ADA Cardano', 'ADA Cardano'),
 )
 
 NETWORK_SELECTED = (

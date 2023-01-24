@@ -22,6 +22,10 @@ def investment_request_view(request):
     if myUpline:
         refer_receiver = Referral.objects.get(id=myUpline)
         print(" My refer receiver: ", refer_receiver)
+        # if refer_receiver.invested:
+        #     print("Invested")
+        # else:
+        #     print("not investor")
     context = {
         'form': form,
     }
@@ -37,12 +41,17 @@ def investment_request_view(request):
 
                     referral.decrease_balance(float(submit_amount))
                     refer_bonus = float(submit_amount) * 2 / 100
+                    invested = True
+                    referral.update_invested(invested)
 
                     try:
                         refer_receiver = Referral.objects.get(id=myUpline)
                         print(" My refer receiver: ", refer_receiver)
-                        refer_receiver.increase_refer_bonus(float(refer_bonus))
-                        refer_receiver.increase_balance(float(refer_bonus))
+                        if refer_receiver.invested:
+                            print("upline account is active")
+                            refer_receiver.increase_refer_bonus(float(refer_bonus))
+                            refer_receiver.increase_balance(float(refer_bonus))
+                            refer_receiver.increase_total_sell_volume(float(refer_bonus))
                     except:
                         pass
 
@@ -59,6 +68,7 @@ def investment_request_view(request):
                         print(" My refer receiver: ", refer_receiver)
                         refer_receiver.increase_refer_bonus(float(refer_bonus))
                         refer_receiver.increase_balance(float(refer_bonus))
+                        refer_receiver.increase_total_sell_volume(float(refer_bonus))
                     except:
                         pass
 
@@ -75,6 +85,9 @@ def investment_request_view(request):
                         print(" My refer receiver: ", refer_receiver)
                         refer_receiver.increase_refer_bonus(float(refer_bonus))
                         refer_receiver.increase_balance(float(refer_bonus))
+                        print("total sell start")
+                        refer_receiver.increase_total_sell_volume(float(refer_bonus))
+                        print("total sell submitted")
                     except:
                         pass
 

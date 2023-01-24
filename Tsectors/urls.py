@@ -19,14 +19,17 @@ from django.conf import settings
 from mainapp.views import main_view, signup_view
 from django.conf.urls.static import static
 from django.conf.urls import handler404, handler500
+from admin_notification.views import check_notification_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mainapp.urls')),
+    # path('', include('django.contrib.auth.urls')),
     path('', include('cryptocoin.urls')),
     path('', include('withdraw.urls')),
     path('', include('deposit.urls')),
     path('', include('fund_transfer.urls')),
+    path('check/notification', check_notification_view, name="check_notifications"),
 
     # path('signup/<str:ref_code>/', main_view, name='main-view'),
     # path('<str:ref_code>/', main_view, name='main-view'),

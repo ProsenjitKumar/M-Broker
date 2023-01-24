@@ -33,6 +33,10 @@
                                             {% render_field form.username class="form-control" hx-posts="/check_username/" hx-trigger="keyup" hx-target="#username-error" %}
                                             <div id="username"></div>
                                         </div>
+                                        <div class="col-12 mb-20">
+                                            {{ form.email.errors }}
+                                            {{ form.email|add_class:"form-control" }}
+                                        </div>
 
                                         <div class="col-12 mb-20">
                                             {{ form.password1.errors }}

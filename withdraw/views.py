@@ -15,13 +15,14 @@ def withdrawal_request_view(request):
     balance = referral.balance
     print('previus balance: ', balance)
     submit_amount = request.POST.get('withdraw_amount')
+    min_withdraw = 20
 
     context = {
         'form': form,
         'balance': balance,
     }
     if form.is_valid():
-        if float(submit_amount) <= float(balance):
+        if float(submit_amount) <= float(balance) and float(submit_amount) >= float(min_withdraw):
             referral.decrease_balance(float(submit_amount))
             print("current Balance: ", balance)
             print("Withdraw succesfully")
@@ -31,7 +32,15 @@ def withdrawal_request_view(request):
             messages.success(request, 'Confirmation Send')
             return redirect('/withdraw/')
         else:
-            print("insufficient funds!")
-            messages.error(request, 'insufficient funds')
+            print("insufficient funds! Minimum Withdraw $20.")
+            messages.error(request, 'insufficient funds! Minimum Withdraw $20.')
 
     return render(request, 'profile/withdrawal/withdrawal-request.html', context)
+
+
+def withdrawal_history(request):
+    history = WithdrawalRequest.objects.filter(user=request.user)
+    context = {
+        'history': history,
+    }
+    return render(request, 'profile/withdrawal/withftawal-history.html', context)
