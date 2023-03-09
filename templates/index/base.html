@@ -24,6 +24,16 @@
         <link rel="stylesheet" href="{% static 'index/assets/css/default.css' %}">
         <link rel="stylesheet" href="{% static 'index/assets/css/style.css' %}">
         <link rel="stylesheet" href="{% static 'index/assets/css/responsive.css' %}">
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="exponential.js"></script>
+
+
     </head>
     <body class="home-01">
 
@@ -55,13 +65,11 @@
                                     <div class="navbar-wrap main-menu d-none d-lg-flex">
                                         <ul class="navigation">
 
-                                             {% if request.user.is_authenticated %}
-                                                <li class="active"><a href="/dashboard/" class="section-link">Dashboard</a></li>
+                                            {% if request.user.is_authenticated %}
+                                                <li class="section-link"><a href="/dashboard/" class="btn">Dashboard</a></li>
                                             {% else %}
-                                                <li class="active"><a href="/signin/" class="section-link">Login</a></li>
+                                                <li class="section-link"><a href="/signin/" class="btn">Login</a></li>
                                             {% endif %}
-
-
                                             <li><a href="#about" class="section-link">About us</a></li>
                                             <li><a href="#sales" class="section-link">Sales</a></li>
                                             <li><a href="#roadmap" class="section-link">Roadmap</a></li>
@@ -161,10 +169,10 @@
                                     <div class="footer-link">
                                         <ul>
                                             <li><a href="#">Contact us</a></li>
-                                            <li><a href="#">How it Works</a></li>
+                                            <li><a href="/how-it-works/">How it Works</a></li>
                                             <li><a href="#">Create</a></li>
                                             <li><a href="#">Explore</a></li>
-                                            <li><a href="#">Terms & Services</a></li>
+                                            <li><a href="/terms-and-conditions/">Terms & Services</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -207,8 +215,8 @@
                             <div class="col-lg-6 d-none d-sm-block">
                                 <div class="footer-menu">
                                     <ul>
-                                        <li><a href="#">Terms and conditions</a></li>
-                                        <li><a href="#">Privacy policy</a></li>
+                                        <li><a href="/terms-and-conditions/">Terms and conditions</a></li>
+                                        <li><a href="/privacy-policy/">Privacy policy</a></li>
                                         <li><a href="/signin/">Login / Signup</a></li>
                                     </ul>
                                 </div>

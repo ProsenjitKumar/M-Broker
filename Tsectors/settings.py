@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'mptt',
     'polymorphic',
     'widget_tweaks',
+    'workdays',
+    'simple_history',
 ]
 
 # -------------------------------
@@ -79,7 +81,19 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'django_auto_logout.middleware.auto_logout',
+    'simple_history.middleware.HistoryRequestMiddleware',
+    # cache
+    # 'django.middleware.cache.UpdateCacheMiddleware', #new
+    # 'django.middleware.cache.FetchFromCacheMiddleware', #new
 ]
+#
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+#         'LOCATION': 'unique-snowflake',
+#     }
+# }
 
 ROOT_URLCONF = 'Tsectors.urls'
 
@@ -95,6 +109,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # !!! Add this !!!
+                # 'django_auto_logout.context_processors.auto_logout_client',
             ],
         },
     },
@@ -170,3 +186,23 @@ EMAIL_HOST_USER = 'company@meekbroker.com' # Ex: info@pure.com
 EMAIL_HOST_PASSWORD = '0gJCbV7Jm6gC' # for the email you created through cPanel. The password for that
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# ---------- auto logout
+# from datetime import timedelta
+#
+# AUTO_LOGOUT = {
+#     'IDLE_TIME': timedelta(minutes=10),
+#     'SESSION_TIME': timedelta(minutes=40),
+#     'MESSAGE': 'The session has expired. Please login again to continue.',
+#     'REDIRECT_TO_LOGIN_IMMEDIATELY': True,
+# }
+
+
+from decouple import config
+import django.core.management.commands.runserver as runserver
+
+runserver.Command.default_port = config('WebServer_Port', default = "8088")
+
+# GeoPath
+# GEOIP_PATH =os.path.join(BASE_DIR, 'geoip/')
+GEOIP_PATH =os.path.join('geoip')

@@ -96,7 +96,6 @@
 
                                 <label for="birthday">Birthday</label>
                                 <div class="col-sm-6 col-12 mb-20">
-
                                     <input name="birthday" data-datepicker="" class="form-control input-date-single" id="birthday"
                                            type="text" placeholder="dd/mm/yyyy" value="{{ profile.birthday|date:'m/d/Y'|default:'' }}" required>
                                 </div>
@@ -128,8 +127,6 @@
 
 
                         <h2 class="h5 my-4">Address</h2>
-
-
                                 <div class="col-sm-6 col-12 mb-20">
                                     <label for="address">Address</label>
                                     <input name="address" class="form-control" id="address" type="text"
@@ -150,15 +147,16 @@
                                            value="{{ profile.zip|default:'' }}" required>
                                 </div>
 
-
-
+                                <div class="col-sm-6 col-12 mb-20">
+                                    <label for="phone">NID Number</label>
+                                    <input name="phone" class="form-control" id="phone" type="number"
+                                           placeholder="Your NID number" value="{{ profile.number }}" required>
+                                </div>
 
                                                 <div class="col-12 mt-10 mb-20">
                                                     <input type="submit" class="button button-primary button-outline" value="Save Changes">
                                                     <input type="submit" class="button button-danger button-outline" value="Delete Changes">
                                                 </div>
-
-
                                             </div>
                                         </form>
                                     </div>

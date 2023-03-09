@@ -1,0 +1,10 @@
+{% autoescape off %}
+Hello,
+Hi, {{ user }}, Your withdraw ${{ submit_amount }} has been successfully done!
+
+Thanks {{ email }},
+
+Sincerely,
+The Website Team
+
+{% endautoescape %}

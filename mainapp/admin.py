@@ -6,7 +6,7 @@ from django.apps import apps
 from polymorphic.admin import PolymorphicParentModelAdmin, PolymorphicChildModelAdmin
 from mptt.admin import MPTTModelAdmin
 
-from .models import Referral, PinSet, Profile, Contact
+from .models import Referral, PinSet, Profile, Contact, KYC
 
 
 @admin.register(Referral)
@@ -29,3 +29,8 @@ class ReferralAdmin(MPTTModelAdmin):
 admin.site.register(PinSet)
 admin.site.register(Profile)
 admin.site.register(Contact)
+admin.site.register(KYC)
+
+admin.site.site_header  =  "Meek Broker Admin"
+admin.site.site_title  =  "Meek Broker admin site"
+admin.site.index_title  =  "Meek Broker Admin"

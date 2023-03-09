@@ -57,8 +57,45 @@
                         <a href="/">
                             <img src="{% static 'index/assets/img/logo/mkb.PNG' %}" style="width: 140px;height: 83px" alt="">
                             <img src="{% static 'index/assets/img/logo/mkb.PNG' %}" style="width: 140px;height: 83px" class="logo-light" alt="">
+
                         </a>
+
+
                     </div><!-- Header Logo (Header Left) End -->
+
+                    <!-- MKB Coin -->
+                    <!-- MKB Coin --><!-- MKB Coin -->
+{#                    <button ><span class="button button-outline"><a href="/coin-list/">#}
+{#                        MKBCoin Current Price: <strong style="color: black" id="mkb">$ </strong></a>#}
+{#                                        </span></button>#}
+{##}
+{#                    <script>#}
+{#                                    $(document).ready(function (){#}
+{#                                        setInterval(function (){#}
+{#                                            $.ajax({#}
+{#                                                type:'GET',#}
+{#                                                url: "{% url 'base' %}",#}
+{#                                                success: function (response){#}
+{#                                                    $('#display').empty();#}
+{#                                                    var mkbcoin = 45212;#}
+{#                                                    $("#display").append(mkbcoin);#}
+{##}
+{#                                                },#}
+{#                                                error: function (response){#}
+{#                                                    alert("No Deposited yet");#}
+{#                                                }#}
+{#                                            })#}
+{#                                        }, 1000);#}
+{#                                    });#}
+{#                                </script>#}
+
+                    <button ><strong class="button button-outline" style="color: black!important;"><a href="/coin-list/">
+                        MKBCoin Current Price: ${% mkb_coin request %}</a>
+                                        </strong></button>
+
+                    <!-- MKB Coin -->
+                    <!-- MKB Coin --><!-- MKB Coin -->
+
 
                     <!-- Header Right Start -->
                     <div class="header-right flex-grow-1 col-auto">
@@ -69,7 +106,8 @@
                                 <div class="row align-items-center">
 
                                     <!--Side Header Toggle-->
-                                    <div class="col-auto"><button class="side-header-toggle"><i class="zmdi zmdi-menu"></i></button></div>
+                                    <div class="col-auto"><button class="side-header-toggle" style="color: #ffffff"><i class="zmdi zmdi-menu"></i></button></div>
+
 
                                 </div>
                             </div><!-- Side Header Toggle & Search End -->
@@ -83,7 +121,6 @@
                                         <button class="button button-success"><span><a href="/coin-list/">Deposit</a> </span></button>
                                         <button class="button button-outline button-success"><span><a href="/coin-list/">${% number_of_messages request %}</a>
                                         </span></button>
-
                                     </li>
 
                                     <!--Notification-->
@@ -173,8 +210,8 @@
                 <nav class="side-header-menu" id="side-header-menu">
                     <ul>
 
-                        <li><a href="/dashboard/"><i class="ti-home"></i> <span>Dashboard</span></a></li>
-                        <li><a href="/coin-list/"><i class="ti-palette"></i> <span>Deposit</span></a></li>
+                        <li><a href="/dashboard/"><i class="ti-home"></i> <span style="color: #ffffff!important;">Dashboard</span></a></li>
+                        <li><a href="/coin-list/"><i class="ti-palette"></i> <span style="color: #ffffff!important;">Deposit</span></a></li>
                         <li><a href="/withdraw/"><i class="ti-money"></i> <span>Withdrawal</span></a></li>
                         <li><a href="/investment/"><i class="ti-info"></i> <span>Investment Scheme</span></a></li>
 {#                        <li><a href="/investment/"><i class="ti-info"></i> <span>Active Investment</span></a></li>#}
@@ -182,7 +219,7 @@
                         <li class="has-sub-menu"><a href="#"><i class="ti-wallet"></i> <span>Profit</span></a>
                             <ul class="side-header-sub-menu">
                                 <li><a href="/upcoming/"><span>ROI</span></a></li>
-                                <li><a href="/upcoming/"><span>Level Income</span></a></li>
+                                <li><a href="/upcoming/"><span style="color: #ffffff!important;">Level Income</span></a></li>
                                 <li><a href="/upcoming/"><span>Referral</span></a></li>
                                 <li><a href="/upcoming/"><span>Copy Trade Investment</span></a></li>
                                 <li><a href="/upcoming/"><span>Rank</span></a></li>
@@ -202,7 +239,7 @@
                         <li><a href="/affiliate-team/"><i class="ti-id-badge"></i> <span>Affiliate Team</span></a></li>
                         <li class="has-sub-menu"><a href="#"><i class="ti-package"></i> <span>Activity & History</span></a>
                             <ul class="side-header-sub-menu">
-                                <li><a href="/upcoming/"><span>Transaction History</span></a></li>
+                                <li><a href="/p2p-transfer-history/"><span>Balance Transfer History</span></a></li>
                                 <li><a href="/upcoming/"><span>Account History</span></a></li>
                                 <li><a href="/upcoming/"><span>Copytrader History</span></a></li>
                                 <li><a href="/investment-history/"><span>Investment History</span></a></li>
@@ -217,7 +254,7 @@
                                 <li><a href="/upcoming/"><span>Set PIN</span></a></li>
                                 <li><a href="/upcoming/"><span>Forget Password</span></a></li>
                                 <li><a href="/upcoming/"><span>2-Step Verification</span></a></li>
-                                <li><a href="/upcoming/"><span>Account Verify</span></a></li>
+                                <li><a href="/kyc/"><span>KYC</span></a></li>
                             </ul>
                         </li>
                         <li><a href="/upcoming/"><i class="ti-help-alt"></i> <span>Help & Support</span></a></li>

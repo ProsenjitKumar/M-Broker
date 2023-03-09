@@ -1,7 +1,8 @@
 from django.urls import re_path
 from .views import main_view, signup_view, login_view, user_logout,\
     dashboard, ProfileView, affiliate_team, upcoming_view, account_info,\
-    password_reset_request
+    password_reset_request, how_it_works, privacy_policy, terms_conditions,\
+    kyc_view#, base
 from django.contrib.auth import views as auth_views #import this
 
 urlpatterns = [
@@ -13,6 +14,7 @@ urlpatterns = [
     re_path('profile/', ProfileView.as_view(), name='profile'),
     re_path('affiliate-team/', affiliate_team, name='affiliate-team'),
     re_path('account-info/', account_info, name='account-info'),
+    re_path('kyc/', kyc_view, name='kyc'),
     re_path("password_reset", password_reset_request, name="password_reset"),
     re_path('password_reset/done/',
          auth_views.PasswordResetDoneView.as_view(template_name='profile/signup/reset/password_reset_done.html'),
@@ -24,5 +26,9 @@ urlpatterns = [
          auth_views.PasswordResetCompleteView.as_view(template_name='profile/signup/reset/password_reset_complete.html'),
          name='password_reset_complete'),
 
+    re_path('how-it-works/', how_it_works, name='how-it-works'),
+    re_path('privacy-policy/', privacy_policy, name='privacy-policy'),
+    re_path('terms-and-conditions/', terms_conditions, name='terms-and-conditions'),
     re_path('upcoming/', upcoming_view, name='upcoming'),
+    # re_path('base/', base, name='base'),
 ]

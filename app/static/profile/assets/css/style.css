@@ -1,7 +1,7 @@
 /*-----------------------------------------------------------------------------------
 
     Template Name: Adomx - Responsive Bootstrap 4 Admin Template
-    Version: 1.0
+    Version: 1.0header-menu > ul > li > a
 
 -----------------------------------------------------------------------------------
 
@@ -7787,7 +7787,7 @@ body.header-top-green .header-notification-area > li > a .user .name {
   display: -ms-flexbox;
   display: flex;
   font-size: 14px;
-  color: #8b8d9b;
+  color: #ffffff;
   line-height: 20px;
   padding: 12px 0 12px 25px;
 }

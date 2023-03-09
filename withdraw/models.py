@@ -23,7 +23,7 @@ NETWORK_SELECTED = (
     ('BTC Bitcoin', 'BTC Bitcoin'),
     ('Ethereum (ERC20)', 'Ethereum (ERC20)'),
     ('LTC Litecoin', 'LTC Litecoin'),
-    ('Tron (TRC20)', 'Tron (TRC20)'),
+    # ('Tron (TRC20)', 'Tron (TRC20)'),
     ('BNB Smart Chain (BEP20)', 'BNB Smart Chain (BEP20)'),
     ('Cardano ', 'Cardano '),
     ('Polygon ', 'Polygon '),

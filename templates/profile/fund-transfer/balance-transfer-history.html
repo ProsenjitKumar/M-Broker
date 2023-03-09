@@ -1,0 +1,73 @@
+{% extends 'profile/base/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+        <!-- Content Body Start -->
+        <div class="content-body">
+
+            <!-- Page Headings Start -->
+            <div class="row justify-content-between align-items-center mb-10">
+                <!-- Page Heading Start -->
+                <div class="col-12 col-lg-auto mb-20">
+                    <div class="page-heading">
+                        <h3>Balance Transfer History <span>/ transfer history</span></h3>
+                    </div>
+                </div><!-- Page Heading End -->
+            </div><!-- Page Headings End -->
+
+        <!-- ****************************
+        |
+        |        Main Content Start
+        |
+         ******************************** -->
+
+        <!--Table Head Light Start-->
+                <div class="col-lg-6 col-12 mb-30">
+                    <div class="box">
+                        <div class="box-head">
+                            <h4 class="title">Your All Time Balance Transfer History</h4>
+                        </div>
+                        <div class="box-body">
+
+
+                            <table class="table">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>#</th>
+
+                                        <th>Amount</th>
+                                        <th>Account Address</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for object in object_list %}
+                                    <tr>
+                                        <th><i class="ti-arrow-right"></i></th>
+                                        <td>${{ object.amount }}</td>
+                                        <td>{{ object.receiver_account_address }}</td>
+
+                                        <td>{{ object.created_at }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                    </div>
+                </div>
+                <!--Table Head Light End-->
+
+        <!-- ****************************
+        |
+        |        Main Content End
+        |
+         ******************************** -->
+
+
+
+        </div><!-- Content Body End -->
+{% endblock %}

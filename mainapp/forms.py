@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django import forms
 from django.forms import TextInput, PasswordInput
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile, Contact
+from .models import Profile, Contact, KYC
 
 
 class SignupForm(UserCreationForm):
@@ -42,7 +42,7 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = '__all__'
-        exclude = ['user', 'number',]
+        exclude = ['user',]
 
 
 def form_validation_error(form):
@@ -71,3 +71,12 @@ class ContactForm(forms.ModelForm):
             'email': TextInput(attrs={'placeholder': 'Enter your email'}),
             'content': TextInput(attrs={'placeholder': 'Enter your message'}),
         }
+
+
+# kyc form
+class KYCForm(forms.ModelForm):
+
+    class Meta:
+        model = KYC
+        fields = '__all__'
+        exclude = ['user', 'active',]

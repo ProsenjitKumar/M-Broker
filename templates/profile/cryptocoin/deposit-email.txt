@@ -1,0 +1,13 @@
+{% autoescape off %}
+Hi, {{ user }},
+Your deposit request ${{ submit_amount }} has been successfully done!
+Shortly ${{ submit_amount }} should be reflected in your available balance.
+Your submitted transaction id is {{ transaction_id }}.
+Subscribed by {{ email }}
+
+Thanks,
+
+Sincerely,
+The Meek Broker Team
+
+{% endautoescape %}

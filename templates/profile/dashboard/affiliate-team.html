@@ -57,25 +57,29 @@
 {#    {% endrecursetree %}#}
 {#</ul>#}
 
-
+ <!-- Page Heading Start -->
+                <div class="col-12 col-lg-auto mb-20">
+                    <div class="page-heading">
+                        <h3>My Team Member</h3>
+                    </div>
+                </div><!-- Page Heading End -->
 
             {% recursetree total_downlines %}
                 <li>
-                    <a href="../{{ node.id }}">{{ node.account }}</a>
+                    <span {{ node.id }} style="font-size: 20px"><strong style="color: #0bb7ff">Username:</strong> {{ node.account }}<br>
+                        {% if node.account.email %}
+                        Email: {{ node.account.email }}
+                        {% endif %}
+                    </span>
                     {% if not node.is_leaf_node %}
-                        <ul class="children
-                            {% if node.level == 1 %}class_1
-                            {% elif node.level == 2 %}class_2
-                            {% elif node.level == 3 %}class_3
-                            {% endif %}">
-                            <em>{{ children }}</em>
+                        <ul class="children">
+                            <em><span>{{ children }}</span></em>
                         </ul>
                     {% endif %}
                 </li>
             {% endrecursetree %}
 
-</ol>
-</div>
+
 
 
 

@@ -23,3 +23,5 @@ class CryptoCoinList(models.Model):
 
     def __str__(self):
         return self.coin_name
+
+

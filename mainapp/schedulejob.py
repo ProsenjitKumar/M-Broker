@@ -26,6 +26,8 @@
 #         scheduler.start()
 #     except:
 #         pass
-#
-#
-# start_job()
+
+from .views import start_job
+
+
+start_job()

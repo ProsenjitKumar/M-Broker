@@ -1,0 +1,11 @@
+{% autoescape off %}
+Hi, {{ receriver_user }},
+Your received ${{ submit_amount }} from {{ user }}!
+Subscribed email {{ receiver_email }}
+
+Thanks,
+
+Sincerely,
+The Website Team
+
+{% endautoescape %}

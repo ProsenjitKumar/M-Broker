@@ -1,27 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'profile/base/base.html' %}
+{% load static %}
 
-<form method="post" action=" ">
-    {% csrf_token %}
-    {% if messages %}
-                                        <ul class="alert alert-danger" style="list-style: none;">
-                                            {% for message in messages %}
-                                            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>
-                                                <p style="color: red">{{ message }}</p>
-                                            </li>
-                                            {% endfor %}
-                                        </ul>
-                                        {% endif %}
-    {{ form.as_p }}
-<button>Submit</button>
+{% block content %}
+
+<!-- Content Body Start -->
+        <div class="content-body">
+
+            <!-- Page Headings Start -->
+            <div class="row justify-content-between align-items-center mb-10">
+                <!-- Page Heading Start -->
+                <div class="col-12 col-lg-auto mb-20">
+                    <div class="page-heading">
+                        <h3>KYC <span>/ Investor Verification</span></h3>
+                    </div>
+                </div><!-- Page Heading End -->
+            </div><!-- Page Headings End -->
+
+        <!-- ****************************
+        |
+        |        Main Content Start
+        |
+         ******************************** -->
+
+        <!--Form Size Start-->
+                <div class="col-12 mb-30">
+                    <div class="box">
+
+                        <form action="" method="post">
+                            {% csrf_token %}
+
+                        {% if messages %}
+                        {% for message in messages %}
+                            {% if 'success' == message.tags %}
+                                <ul class="alert alert-success" style="list-style: none;">
+                                <li><strong style="color: #23de06">{{ message }}</strong></li>
+                                </ul>
+
+                                {% elif 'error' == message.tags %}
+                                <ul class="alert alert-danger" style="list-style: none;">
+                                <li><strong style="color: #de063f">{{ message }}</strong></li>
+                                </ul>
+
+                            {% endif %}
+                        {% endfor %}
+                         {% endif %}
+
+
+                        <div class="box-body">
+                            <div class="row mbn-20">
+
+                                <!--Default Field-->
+                                <div class="col-lg-4 col-12 mb-20">
+                                    <div class="row mbn-15">
+                                        <div class="col-12 mb-15">
+                                            <label>Amount</label>
+                                            {{ form.profile_pic }}
+                                        </div>
+                                        <div class="col-12 mb-15">
+                                            <label>Your Coin</label>
+                                                {{ form.nid_back }}
+                                        </div>
+                                        <div class="col-12 mb-15">
+                                            <label>NID Front Picture</label>
+                                                {{ form.nid_front }}
+                                        </div>
+
+                                    </div><br>
+                                    <div class="foot text-center">
+                                    <button class="button button-primary">Verify Now</button>
+                                         </div>
+                                </div>
+                                <!--Default Field-->
+
+                            </div>
+                        </div>
+                            </form>
+
+                    </div>
+                </div>
+                <!--Form Size End-->
+
+
+
+
+        </div><!-- Content Body End -->
 </form>
 
 
-
-</body>
-</html>
+{% endblock %}

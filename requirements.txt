@@ -26,10 +26,12 @@ django-widget-tweaks==1.4.12
 djangorestframework==3.14.0
 jinxed==1.2.0
 kombu==5.2.4
+numpy==1.24.1
 Pillow==9.3.0
 prompt-toolkit==3.0.36
 python-crontab==2.7.1
 python-dateutil==2.8.2
+python-networkdays==1.1
 pytz==2022.7.1
 pytz-deprecation-shim==0.1.0.post0
 redis==3.5.3
@@ -42,3 +44,4 @@ tzlocal==4.2
 vine==5.0.0
 wcwidth==0.2.6
 whitenoise==6.0.0
+workdays==1.4

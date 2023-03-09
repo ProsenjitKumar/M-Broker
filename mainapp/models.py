@@ -17,6 +17,8 @@ _ = translation.gettext_lazy
 from .utils import generate_ref_code, generate_coin_address
 from django.templatetags.static import static
 
+from datetime import datetime, timedelta
+
 # Create your models here.
 
 
@@ -94,6 +96,10 @@ class Referral(NumeratorMixin, MPTTModel, models.Model):
 
     # Roi Profit
     def today_roi_profit(self, roi_profit):
+        self.roi_profit = self.roi_profit + decimal.Decimal(roi_profit)
+        self.save()
+
+    def update_roi_profit(self, roi_profit):
         self.roi_profit = decimal.Decimal(roi_profit)
         self.save()
 
@@ -104,6 +110,10 @@ class Referral(NumeratorMixin, MPTTModel, models.Model):
     # Refer Bonus
     def increase_refer_bonus(self, direct_refer_income):
         self.direct_refer_income += decimal.Decimal(direct_refer_income)
+        self.save()
+
+    def update_refer_bonus(self, direct_refer_income):
+        self.direct_refer_income = decimal.Decimal(direct_refer_income)
         self.save()
 
     # Invested True False
@@ -118,6 +128,26 @@ class Referral(NumeratorMixin, MPTTModel, models.Model):
 
     def increase_today_sell_volume(self, today_sell_volume):
         self.today_sell_volume = self.today_sell_volume + decimal.Decimal(today_sell_volume)
+        self.save()
+
+    def update_today_sell_volume(self, today_sell_volume):
+        self.today_sell_volume = decimal.Decimal(today_sell_volume)
+        self.save()
+
+    # def get_total_roi(self):
+    #     if self.roi_profit.up
+
+    # get level earning
+    def roi_and_level_earning(self):
+        return self.roi_profit + self.level_income
+
+    # Level income
+    def today_level_income(self, level_income):
+        self.level_income = self.level_income + decimal.Decimal(level_income)
+        self.save()
+
+    def update_today_level_income(self, level_income):
+        self.level_income = decimal.Decimal(level_income)
         self.save()
 
     def get_referral_limit(self):
@@ -214,4 +244,23 @@ class Contact(models.Model):
     def __str__(self):
         return self.name
 
+
+# ----------------------------
+#
+#          Profile
+#
+# ----------------------------
+
+class KYC(models.Model):
+    user = models.OneToOneField(User, related_name="kyc", on_delete=models.CASCADE)
+    profile_pic = models.ImageField(upload_to="customers/profiles/pic/", blank=False)
+    nid_front = models.ImageField(upload_to="customers/nid/pic/", blank=False)
+    nid_back = models.ImageField(upload_to="customers/nid/pic/", blank=False)
+
+    active = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.user.username
 

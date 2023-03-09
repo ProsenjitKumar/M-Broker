@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from mainapp.models import Referral
 from .models import DepositRequestConfirmation
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -50,7 +51,7 @@ def investment_request_view(request):
                         if refer_receiver.invested:
                             print("upline account is active")
                             refer_receiver.increase_refer_bonus(float(refer_bonus))
-                            refer_receiver.increase_balance(float(refer_bonus))
+                            # refer_receiver.increase_balance(float(refer_bonus))
                             refer_receiver.increase_total_sell_volume(float(refer_bonus))
                     except:
                         pass
@@ -62,12 +63,14 @@ def investment_request_view(request):
 
                     referral.decrease_balance(float(submit_amount))
                     refer_bonus = float(submit_amount) * 5 / 100
+                    invested = True
+                    referral.update_invested(invested)
 
                     try:
                         refer_receiver = Referral.objects.get(id=myUpline)
                         print(" My refer receiver: ", refer_receiver)
                         refer_receiver.increase_refer_bonus(float(refer_bonus))
-                        refer_receiver.increase_balance(float(refer_bonus))
+                        # refer_receiver.increase_balance(float(refer_bonus))
                         refer_receiver.increase_total_sell_volume(float(refer_bonus))
                     except:
                         pass
@@ -79,12 +82,14 @@ def investment_request_view(request):
 
                     referral.decrease_balance(float(submit_amount))
                     refer_bonus = float(submit_amount) * 10 / 100
+                    invested = True
+                    referral.update_invested(invested)
 
                     try:
                         refer_receiver = Referral.objects.get(id=myUpline)
                         print(" My refer receiver: ", refer_receiver)
                         refer_receiver.increase_refer_bonus(float(refer_bonus))
-                        refer_receiver.increase_balance(float(refer_bonus))
+                        # refer_receiver.increase_balance(float(refer_bonus))
                         print("total sell start")
                         refer_receiver.increase_total_sell_volume(float(refer_bonus))
                         print("total sell submitted")
@@ -125,3 +130,13 @@ def investment_history(request):
 
     return render(request, 'profile/deposit/investment-history.html', context)
 
+
+def getDepsoit(request):
+    # queryset = DepositRequestConfirmation.objects.all()
+    queryset = DepositRequestConfirmation.objects.all().order_by('-id')[:3]
+    # users = list(queryset.values())
+    users = queryset.values()
+    # for user in users:
+        # print(user.user.username)
+        # print(type(user))
+    return JsonResponse({'users':list(queryset.values())})

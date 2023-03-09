@@ -40,7 +40,7 @@
                         <div class="col-xl-10">
                             <div class="banner-countdown-wrap text-center">
                                 <h2 class="title">ICO Will Start In..</h2>
-                                <div class="coming-time" data-countdown="2023/2/25"></div>
+                                <div class="coming-time" data-countdown="2023/2/29"></div>
 
                             <!-- Custom -->
                             <!-- Custom -->
@@ -52,9 +52,108 @@
 
                             <br>
                             <br>
+
+                                <style>
+                                    table {
+                                      font-family: arial, sans-serif;
+                                      border-collapse: collapse;
+                                      width: 100%;
+                                    }
+
+                                    td, th {
+                                      border: 1px solid #dddddd;
+                                      text-align: left;
+                                      padding: 8px;
+                                    }
+
+                                    tr:nth-child(even) {
+                                      background-color: white;
+                                    }
+                                    </style>
+
+
+                                    <h2>Deposit Table</h2>
+
+                                    <table>
+                                      <tr>
+                                        <th>Company</th>
+                                        <th>Contact</th>
+                                        <th>Country</th>
+                                      </tr>
+                                        <tbody id="display">
+
+                                        </tbody>
+
+                                    </table>
+
+                                <script>
+                                    function display_ct7() {
+                                    var x = new Date()
+                                    var ampm = x.getHours( ) >= 12 ? ' PM' : ' AM';
+                                    hours = x.getHours( ) % 12;
+                                    hours = hours ? hours : 12;
+                                    hours=hours.toString().length==1? 0+hours.toString() : hours;
+
+                                    var minutes=x.getMinutes().toString()
+                                    minutes=minutes.length==1 ? 0+minutes : minutes;
+
+                                    var seconds=x.getSeconds().toString()
+                                    seconds=seconds.length==1 ? 0+seconds : seconds;
+
+                                    var month=(x.getMonth() +1).toString();
+                                    month=month.length==1 ? 0+month : month;
+
+                                    var dt=x.getDate().toString();
+                                    dt=dt.length==1 ? 0+dt : dt;
+
+                                    var x1=month + "/" + dt + "/" + x.getFullYear();
+                                    x1 = x1 + " - " +  hours + ":" +  minutes + ":" +  seconds + " " + ampm;
+                                    document.getElementById('ct7').innerHTML = x1;
+                                    display_c7();
+                                     }
+                                     function display_c7(){
+                                    var refresh=1000; // Refresh rate in milli seconds
+                                    mytime=setTimeout('display_ct7()',refresh)
+                                    }
+                                    display_c7()
+                                </script>
+
+                            <span id='ct7' style="color: #FFFF00"></span>
+
+                                <script>
+                                    $(document).ready(function (){
+                                        setInterval(function (){
+                                            $.ajax({
+                                                type:'GET',
+                                                url: "{% url 'get-deposit' %}",
+                                                success: function (response){
+                                                    $('#display').empty();
+                                                    for (var key in response.users){
+                                                        console.log(response.users[key].amount_deposited);
+                                                        var temp="<tr><td scope='row'>"+response.users[key].amount_deposited+"</td></tr>"
+                                                        $("#display").append(temp);
+                                                    }
+                                                },
+                                                error: function (response){
+                                                    alert("No Deposited yet");
+                                                }
+                                            })
+                                        }, 1000);
+                                    });
+                                </script>
+
+
+                            <br>
+                            <br>
+
+                            <br>
+                            <br>
                             <!-- live chart -->
                             <!-- live chart -->
-                            <div style="height:560px; background-color: #1D2330; overflow:hidden; box-sizing: border-box; border: 1px solid #282E3B; border-radius: 4px; text-align: right; line-height:14px; font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #262B38;padding:1px;padding: 0px; margin: 0px; width: 100%;"><div style="height:540px; padding:0px; margin:0px; width: 100%;"><iframe src="https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=859&pref_coin_id=1505" width="100%" height="536px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;line-height:14px;">
+                            <div style="height:560px; background-color: #1D2330; overflow:hidden; box-sizing: border-box; border: 1px solid #282E3B; border-radius: 4px; text-align: right; line-height:14px; font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #262B38;padding:1px;padding: 0px; margin: 0px; width: 100%;">
+                                <div style="height:540px; padding:0px; margin:0px; width: 100%;">
+                                    <iframe src="https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=859&pref_coin_id=1505"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                          width="100%" height="536px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;line-height:14px;">
                             </iframe>
                             </div>
                                 <div style="color: #626B7F; line-height: 14px; font-weight: 400; font-size: 11px; box-sizing: border-box; padding: 2px 6px; width: 100%; font-family: Verdana, Tahoma, Arial, sans-serif;">
@@ -125,6 +224,10 @@
                 </div>
             </section>
             <!-- about-area-end -->
+
+
+
+
 
             <!-- partner-area -->
             <div class="partner-area pb-130">
@@ -484,139 +587,52 @@
                         <div class="col-xl-3 col-md-4 col-sm-6">
                             <div class="team-item">
                                 <div class="team-thumb">
-                                    <img src="{% static 'index/assets/img/team/team_img01.png' %}" alt="">
+                                    <img src="{% static 'index/assets/img/team/dr davis - crypto analyst.png' %}" alt="">
                                 </div>
                                 <div class="team-content">
-                                    <h2 class="title">Cameron Williamson</h2>
-                                    <span>Founder & CO</span>
-                                    <ul class="team-social">
-                                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                    </ul>
+                                    <h2 class="title">Dr. Davis Hixon</h2>
+                                    <span>Crypto Analyst</span>
+
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-4 col-sm-6">
                             <div class="team-item">
                                 <div class="team-thumb">
-                                    <img src="{% static 'index/assets/img/team/team_img02.png' %}" alt="">
+                                    <img src="{% static 'index/assets/img/team/dr jacko c - ceo.png' %}" alt="">
                                 </div>
                                 <div class="team-content">
-                                    <h2 class="title">Eleanor Pena</h2>
-                                    <span>Head of Design</span>
-                                    <ul class="team-social">
-                                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                    </ul>
+                                    <h2 class="title">Dr. Jakco C.</h2>
+                                    <span>CEO</span>
+
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-4 col-sm-6">
                             <div class="team-item">
                                 <div class="team-thumb">
-                                    <img src="{% static 'index/assets/img/team/team_img03.png' %}" alt="">
+                                    <img src="{% static 'index/assets/img/team/Bola Aloko - cmo.PNG' %}" alt="">
                                 </div>
                                 <div class="team-content">
-                                    <h2 class="title">Bessie Cooper</h2>
-                                    <span>Vp People</span>
-                                    <ul class="team-social">
-                                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                    </ul>
+                                    <h2 class="title">Bola Aloko</h2>
+                                    <span>CMO</span>
+
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-4 col-sm-6">
                             <div class="team-item">
                                 <div class="team-thumb">
-                                    <img src="{% static 'index/assets/img/team/team_img04.png' %}" alt="">
+                                    <img src="{% static 'index/assets/img/team/mr lorenge tri cfo.png' %}" alt="">
                                 </div>
                                 <div class="team-content">
-                                    <h2 class="title">Darlene Robertson</h2>
-                                    <span>Product Manager</span>
-                                    <ul class="team-social">
-                                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                    </ul>
+                                    <h2 class="title">Mr. Lorenge Tri</h2>
+                                    <span>Financial Officer</span>
+
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-md-4 col-sm-6">
-                            <div class="team-item">
-                                <div class="team-thumb">
-                                    <img src="{% static 'index/assets/img/team/team_img05.png' %}" alt="">
-                                </div>
-                                <div class="team-content">
-                                    <h2 class="title">Jacob Jones</h2>
-                                    <span>Marketer</span>
-                                    <ul class="team-social">
-                                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-4 col-sm-6">
-                            <div class="team-item">
-                                <div class="team-thumb">
-                                    <img src="{% static 'index/assets/img/team/team_img06.png' %}" alt="">
-                                </div>
-                                <div class="team-content">
-                                    <h2 class="title">Courtney Henry</h2>
-                                    <span>Founder</span>
-                                    <ul class="team-social">
-                                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-4 col-sm-6">
-                            <div class="team-item">
-                                <div class="team-thumb">
-                                    <img src="{% static 'index/assets/img/team/team_img07.png' %}" alt="">
-                                </div>
-                                <div class="team-content">
-                                    <h2 class="title">Ronald Richards</h2>
-                                    <span>Account Manager</span>
-                                    <ul class="team-social">
-                                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-4 col-sm-6">
-                            <div class="team-item">
-                                <div class="team-thumb">
-                                    <img src="{% static 'index/assets/img/team/team_img08.png' %}" alt="">
-                                </div>
-                                <div class="team-content">
-                                    <h2 class="title">Theresa Webb</h2>
-                                    <span>Founder & CO</span>
-                                    <ul class="team-social">
-                                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </section>
